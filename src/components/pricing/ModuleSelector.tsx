@@ -10,6 +10,7 @@ import { ChevronDown, ChevronUp, Check } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { usePricingStore } from '@/lib/store'
 import type { Module } from '@/lib/constants'
+import { defaultModules } from '@/lib/constants'
 
 interface ModuleCardProps {
   module: Module
@@ -96,32 +97,32 @@ export function ModuleSelector() {
   
   useEffect(() => {
     async function fetchModules() {
-      const supabase = createClient()
-      const { data } = await supabase
-        .from('service_modules')
-        .select('*')
-        .eq('is_active', true)
-        .order('sort_order', { ascending: true })
-      
-      if (data) {
-        const typedData = data as Module[]
-        setModules(typedData)
-        const baseModule = typedData.find((m: Module) => m.type === 'base')
-        if (baseModule && !selectedModules.find(m => m.id === baseModule.id)) {
-          addModule({
-            id: baseModule.id,
-            name: baseModule.name,
-            type: baseModule.type,
-            priceMin: baseModule.price_min || 0,
-            priceMax: baseModule.price_max || 0,
-            priceUnit: baseModule.price_unit || ''
-          })
+      try {
+        const supabase = createClient()
+        const { data, error } = await supabase
+          .from('service_modules')
+          .select('*')
+          .eq('is_active', true)
+          .order('sort_order', { ascending: true })
+
+        let moduleData: Module[]
+        if (error) {
+          console.warn('Supabase fetch failed, using fallback data:', error.message)
+          moduleData = defaultModules
+        } else if (data && data.length > 0) {
+          moduleData = data as Module[]
+        } else {
+          moduleData = defaultModules
         }
+        setModules(moduleData)
+      } catch (e) {
+        console.warn('Supabase connection failed, using fallback data:', e)
+        setModules(defaultModules)
       }
       setLoading(false)
     }
     fetchModules()
-  }, [addModule, selectedModules])
+  }, [])
   
   const baseModule = modules.find(m => m.type === 'base')
   const pluginModules = modules.filter(m => m.type === 'plugin')

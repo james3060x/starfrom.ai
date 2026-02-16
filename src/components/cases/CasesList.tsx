@@ -8,6 +8,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { ServiceCase } from '@/lib/constants'
+import { defaultCases } from '@/lib/constants'
 import Link from 'next/link'
 
 const industries = ['全部', '电商', '教育', '制造', '医疗', '金融', '通用', '其他']
@@ -20,15 +21,28 @@ export function CasesList() {
 
   useEffect(() => {
     async function fetchCases() {
-      const supabase = createClient()
-      const { data } = await supabase
-        .from('service_cases')
-        .select('*')
-        .order('sort_order', { ascending: true })
-      
-      if (data) {
-        setCases(data)
-        setFilteredCases(data)
+      try {
+        const supabase = createClient()
+        const { data, error } = await supabase
+          .from('service_cases')
+          .select('*')
+          .order('sort_order', { ascending: true })
+
+        if (error) {
+          console.warn('Supabase fetch failed, using fallback data:', error.message)
+          setCases(defaultCases)
+          setFilteredCases(defaultCases)
+        } else if (data && data.length > 0) {
+          setCases(data)
+          setFilteredCases(data)
+        } else {
+          setCases(defaultCases)
+          setFilteredCases(defaultCases)
+        }
+      } catch (e) {
+        console.warn('Supabase connection failed, using fallback data:', e)
+        setCases(defaultCases)
+        setFilteredCases(defaultCases)
       }
       setLoading(false)
     }

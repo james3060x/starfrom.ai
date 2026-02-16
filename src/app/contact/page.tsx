@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import { ContactForm } from '@/components/contact/ContactForm'
 import { Card, CardContent } from '@/components/ui/card'
 import { Mail, MessageCircle, Clock } from 'lucide-react'
@@ -25,7 +26,9 @@ export default function ContactPage() {
       <div className="container max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <ContactForm />
+            <Suspense fallback={<div className="h-96 bg-gray-200 rounded-lg animate-pulse" />}>
+              <ContactForm />
+            </Suspense>
           </div>
           
           <div className="lg:col-span-1 space-y-6">
