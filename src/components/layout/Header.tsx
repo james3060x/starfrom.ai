@@ -7,13 +7,9 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
-const navItems = [
-  { href: '/services', label: '服务' },
-  { href: '/pricing', label: '定价' },
-  { href: '/cases', label: '案例' },
-  { href: '/demo', label: 'Demo' },
-  { href: '/contact', label: '联系' },
-]
+import { navContent } from '@/lib/content'
+
+const navItems = navContent.menu
 
 export function Header() {
   const pathname = usePathname()
@@ -41,8 +37,8 @@ export function Header() {
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div className="flex items-baseline gap-0.5">
-            <span className="text-xl font-bold text-white tracking-tight">StarFrom</span>
-            <span className="text-xl font-bold text-blue-400">.AI</span>
+            <span className="text-xl font-bold text-white tracking-tight">{navContent.logo.brand}</span>
+            <span className="text-xl font-bold text-blue-400">{navContent.logo.suffix}</span>
           </div>
         </Link>
 
@@ -73,7 +69,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link href="/diagnosis" className="hidden sm:block">
             <Button size="sm" className="glow-btn text-white font-semibold text-sm px-5">
-              免费诊断
+              {navContent.cta}
             </Button>
           </Link>
 
@@ -102,7 +98,7 @@ export function Header() {
                 ))}
                 <Link href="/diagnosis" onClick={() => setIsOpen(false)} className="mt-4">
                   <Button className="w-full glow-btn text-white font-semibold">
-                    免费诊断
+                    {navContent.cta}
                   </Button>
                 </Link>
               </nav>

@@ -1,30 +1,21 @@
 'use client'
 
 import { MessageSquare, BookOpen, Workflow } from 'lucide-react'
+import { homeContent } from '@/lib/content'
 
-const painPoints = [
-  {
-    icon: MessageSquare,
-    title: '客服回复慢，人力成本高',
-    solution: 'AI 智能客服',
-    description: '80% 常见问题由 AI 自动回复，7×24 小时在线服务，大幅降低人力成本',
-    stat: '效率提升 300%',
-  },
-  {
-    icon: BookOpen,
-    title: '知识分散，员工重复提问',
-    solution: 'RAG 知识库',
-    description: '企业知识统一管理，员工随时提问，秒级获取精准答案，知识沉淀复用',
-    stat: '查询效率提升 5 倍',
-  },
-  {
-    icon: Workflow,
-    title: '重复审批，流程拖沓',
-    solution: 'SOP 自动化',
-    description: '标准化审批流程自动化处理，让团队专注于核心工作，不再被琐事困扰',
-    stat: '效率提升 80%',
-  },
-]
+const iconMap = {
+  MessageSquare,
+  BookOpen,
+  Workflow,
+}
+
+const painPoints = homeContent.painPoints.items.map((item, index) => ({
+  icon: Object.values(iconMap)[index],
+  title: item.title,
+  solution: item.solution,
+  description: item.description,
+  stat: item.stat,
+}))
 
 export function PainPoints() {
   return (
@@ -33,13 +24,13 @@ export function PainPoints() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="badge-neon mb-6">
-            痛点解决
+            {homeContent.painPoints.label}
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-            这些问题是否困扰着您？
+            {homeContent.painPoints.title}
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto font-light">
-            我们帮助中小企业解决日常运营中的效率瓶颈
+            {homeContent.painPoints.subtitle}
           </p>
         </div>
         

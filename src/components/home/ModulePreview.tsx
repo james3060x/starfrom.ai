@@ -3,22 +3,17 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Layers, Database, Bot, Link2, Globe, Check } from 'lucide-react'
+import { homeContent } from '@/lib/content'
 
-const baseFeatures = [
-  '1个核心 Agent',
-  '基础 RAG 知识库',
-  '可视化管理后台',
-  '国产模型接入',
-  '网页嵌入界面',
-  '培训 + 售后支持',
-]
+const iconMap = [Database, Bot, Link2, Globe]
 
-const plugins = [
-  { icon: Database, title: '知识库增强', desc: '多数据源接入' },
-  { icon: Bot, title: '多 Agent 协作', desc: '跨部门协作' },
-  { icon: Link2, title: '业务系统集成', desc: '对接现有系统' },
-  { icon: Globe, title: '多渠道接入', desc: '微信/企微/钉钉' },
-]
+const baseFeatures = homeContent.modules.baseModule.features
+
+const plugins = homeContent.modules.plugins.map((plugin, index) => ({
+  icon: iconMap[index],
+  title: plugin.title,
+  desc: plugin.desc,
+}))
 
 export function ModulePreview() {
   return (
@@ -27,13 +22,13 @@ export function ModulePreview() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="badge-pink mb-6">
-            产品服务
+            {homeContent.modules.label}
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-            模块化 AI 服务
+            {homeContent.modules.title}
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto font-light">
-            从基础底座开始，根据业务需求灵活叠加功能模块
+            {homeContent.modules.subtitle}
           </p>
         </div>
         
@@ -51,8 +46,8 @@ export function ModulePreview() {
                   <Layers className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold text-white mb-1">基础模块</h3>
-                  <p className="text-white/40 text-sm">每个客户必选的底座方案</p>
+                  <h3 className="text-2xl font-semibold text-white mb-1">{homeContent.modules.baseModule.title}</h3>
+                  <p className="text-white/40 text-sm">{homeContent.modules.baseModule.subtitle}</p>
                 </div>
               </div>
               
@@ -69,9 +64,9 @@ export function ModulePreview() {
               {/* Price & CTA */}
               <div className="flex items-end justify-between pt-6 border-t border-white/[0.06]">
                 <div>
-                  <span className="text-3xl font-semibold text-white">¥10,000</span>
-                  <span className="text-white/40 ml-1">起</span>
-                  <p className="text-white/30 text-sm mt-1">一次性费用 · 1-3天交付</p>
+                  <span className="text-3xl font-semibold text-white">{homeContent.modules.baseModule.price}</span>
+                  <span className="text-white/40 ml-1">{homeContent.modules.baseModule.priceNote}</span>
+                  <p className="text-white/30 text-sm mt-1">{homeContent.modules.baseModule.priceDesc}</p>
                 </div>
               </div>
             </div>
@@ -97,7 +92,7 @@ export function ModulePreview() {
         <div className="text-center">
           <Link href="/pricing">
             <Button size="lg" className="glow-btn text-white px-8">
-              查看全部模块与定价
+              {homeContent.modules.cta}
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </Link>

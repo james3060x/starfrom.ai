@@ -3,42 +3,15 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
+import { homeContent } from '@/lib/content'
 
-const featuredCases = [
-  {
-    id: 'case-01',
-    title: '电商智能客服',
-    industry: '电商',
-    companySize: '10-50人',
-    metrics: [
-      { label: '效率提升', value: '300%' },
-      { label: '满意度', value: '+40%' },
-      { label: '成本节省', value: '60%' },
-    ],
-  },
-  {
-    id: 'case-02',
-    title: '财务审批自动化',
-    industry: '金融',
-    companySize: '50-200人',
-    metrics: [
-      { label: '时间缩短', value: '80%' },
-      { label: '准确率', value: '99.5%' },
-      { label: '处理量', value: '5×' },
-    ],
-  },
-  {
-    id: 'case-03',
-    title: '技术文档问答',
-    industry: '科技',
-    companySize: '10-50人',
-    metrics: [
-      { label: '查询效率', value: '500%' },
-      { label: '上手时间', value: '-50%' },
-      { label: '开发效率', value: '+25%' },
-    ],
-  },
-]
+const featuredCases = homeContent.cases.items.map((item: { title: string; industry: string; size: string; metrics: { label: string; value: string }[] }) => ({
+  id: item.title,
+  title: item.title,
+  industry: item.industry,
+  companySize: item.size,
+  metrics: item.metrics,
+}))
 
 export function CaseHighlight() {
   return (
@@ -47,13 +20,13 @@ export function CaseHighlight() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="badge-neon mb-6">
-            成功案例
+            {homeContent.cases.label}
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-            客户成功案例
+            {homeContent.cases.title}
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto font-light">
-            看看其他企业如何通过 AI 智能体提升效率
+            {homeContent.cases.subtitle}
           </p>
         </div>
         
@@ -91,7 +64,7 @@ export function CaseHighlight() {
         <div className="text-center">
           <Link href="/cases">
             <Button size="lg" className="secondary-btn text-white/70 hover:text-white px-8">
-              查看更多案例
+              {homeContent.cases.cta}
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </Link>

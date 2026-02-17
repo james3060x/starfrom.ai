@@ -1,26 +1,6 @@
 import Link from 'next/link'
 import { Sparkles, Github, Twitter, Mail, MessageCircle } from 'lucide-react'
-
-const footerLinks = {
-  产品: [
-    { label: '服务详情', href: '/services' },
-    { label: '定价方案', href: '/pricing' },
-    { label: '成功案例', href: '/cases' },
-    { label: '在线体验', href: '/demo' },
-  ],
-  公司: [
-    { label: '关于我们', href: '#' },
-    { label: '联系方式', href: '/contact' },
-    { label: '加入我们', href: '#' },
-    { label: '合作伙伴', href: '#' },
-  ],
-  资源: [
-    { label: '帮助中心', href: '#' },
-    { label: 'API 文档', href: '#' },
-    { label: '开发博客', href: '#' },
-    { label: '社区', href: '#' },
-  ],
-}
+import { footerContent, siteContent } from '@/lib/content'
 
 const socialLinks = [
   { icon: Github, href: '#', label: 'GitHub' },
@@ -49,7 +29,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-white/40 text-sm leading-relaxed mb-6 max-w-xs">
-              为中小企业打造专属 AI 智能体，模板化交付，3 天上线，让 AI 技术触手可及。
+              {footerContent.description}
             </p>
             
             {/* Social Links */}
@@ -68,34 +48,62 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 className="text-white font-semibold text-sm mb-4">{category}</h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link 
-                      href={link.href}
-                      className="text-white/40 hover:text-blue-400 text-sm transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div>
+            <h4 className="text-white font-semibold text-sm mb-4">{footerContent.links.product.title}</h4>
+            <ul className="space-y-3">
+              {footerContent.links.product.items.map((link: { label: string; href: string }) => (
+                <li key={link.label}>
+                  <Link 
+                    href={link.href}
+                    className="text-white/40 hover:text-blue-400 text-sm transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold text-sm mb-4">{footerContent.links.company.title}</h4>
+            <ul className="space-y-3">
+              {footerContent.links.company.items.map((link: { label: string; href: string }) => (
+                <li key={link.label}>
+                  <Link 
+                    href={link.href}
+                    className="text-white/40 hover:text-blue-400 text-sm transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold text-sm mb-4">{footerContent.links.resources.title}</h4>
+            <ul className="space-y-3">
+              {footerContent.links.resources.items.map((link: { label: string; href: string }) => (
+                <li key={link.label}>
+                  <Link 
+                    href={link.href}
+                    className="text-white/40 hover:text-blue-400 text-sm transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-sm">
-            © 2026 StarFrom AI. All rights reserved.
+            {siteContent.copyright}
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="#" className="text-white/30 hover:text-white/60">隐私政策</Link>
-            <Link href="#" className="text-white/30 hover:text-white/60">服务条款</Link>
-            <span className="text-white/20">数据不出境 · 安全合规</span>
+            <Link href="#" className="text-white/30 hover:text-white/60">{footerContent.bottom.privacy}</Link>
+            <Link href="#" className="text-white/30 hover:text-white/60">{footerContent.bottom.terms}</Link>
+            <span className="text-white/20">{footerContent.bottom.compliance}</span>
           </div>
         </div>
       </div>

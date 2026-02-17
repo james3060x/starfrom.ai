@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Sparkles, Shield, Clock, Zap } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { homeContent } from '@/lib/content'
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const { hero } = homeContent
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -20,9 +22,9 @@ export function HeroSection() {
   }, [])
 
   const features = [
-    { icon: Clock, label: '3天交付', desc: '极速上线' },
-    { icon: Zap, label: '¥1万起', desc: '超高性价比' },
-    { icon: Shield, label: '数据不出境', desc: '安全合规' },
+    { icon: Clock, label: hero.pills[0].label, desc: hero.pills[0].desc },
+    { icon: Zap, label: hero.pills[1].label, desc: hero.pills[1].desc },
+    { icon: Shield, label: hero.pills[2].label, desc: hero.pills[2].desc },
   ]
 
   return (
@@ -51,24 +53,23 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.1] backdrop-blur-sm mb-10">
             <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-sm text-white/70">AI 智能体定制服务</span>
-            <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-xs font-mono">v2.0</span>
+            <span className="text-sm text-white/70">{hero.badge}</span>
+            <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-xs font-mono">{hero.version}</span>
           </div>
           
           {/* Main Heading */}
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[1.1]">
-            <span className="block mb-2">为中小企业</span>
-            <span className="gradient-text">打造专属 AI</span>
+            <span className="block mb-2">{hero.title}</span>
+            <span className="gradient-text">{hero.titleHighlight}</span>
           </h1>
           
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-white/50 mb-6 max-w-2xl mx-auto leading-relaxed">
-            模板化交付，<span className="text-blue-400 font-semibold">3 天上线</span>，
-            仅需市场价 <span className="gold-text font-semibold">30%</span>
+            {hero.subtitle.split(hero.subtitleHighlight1)[0]}<span className="text-blue-400 font-semibold">{hero.subtitleHighlight1}</span>{hero.subtitle.split(hero.subtitleHighlight1)[1].split(hero.subtitleHighlight2)[0]}<span className="gold-text font-semibold">{hero.subtitleHighlight2}</span>{hero.subtitle.split(hero.subtitleHighlight2)[1]}
           </p>
           
           <p className="text-base text-white/40 mb-12 max-w-xl mx-auto">
-            智能客服 · 知识库问答 · 流程自动化 · 全渠道接入
+            {hero.features}
           </p>
           
           {/* CTA Buttons */}
@@ -76,7 +77,7 @@ export function HeroSection() {
             <Link href="/diagnosis">
               <Button size="lg" className="glow-btn text-white px-8 py-6 text-lg group">
                 <Sparkles className="mr-2 w-5 h-5" />
-                免费 AI 诊断
+                {hero.ctaPrimary}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -85,7 +86,7 @@ export function HeroSection() {
                 size="lg" 
                 className="secondary-btn text-white/80 px-8 py-6 text-lg hover:text-white"
               >
-                了解服务详情
+                {hero.ctaSecondary}
               </Button>
             </Link>
           </div>

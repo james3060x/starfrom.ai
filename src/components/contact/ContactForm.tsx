@@ -12,8 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge'
 import { Check, Loader2 } from 'lucide-react'
 import { usePricingStore } from '@/lib/store'
-import { industries, companySizes, needTypes, budgetRanges, timelines } from '@/lib/constants'
 import { toast } from 'sonner'
+import { contactContent, optionsContent } from '@/lib/content'
 
 export function ContactForm() {
   const searchParams = useSearchParams()
@@ -102,13 +102,13 @@ export function ContactForm() {
             <Check className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            已收到您的需求
+            {contactContent.success.title}
           </h3>
           <p className="text-gray-600 mb-2">
-            我们将在 24 小时内与您联系
+            {contactContent.success.message}
           </p>
           <p className="text-gray-500 text-sm">
-            如需紧急咨询，请添加微信：starfrom-ai
+            {contactContent.success.urgent}
           </p>
         </CardContent>
       </Card>
@@ -134,72 +134,72 @@ export function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="company_name">公司名称</Label>
+              <Label htmlFor="company_name">{contactContent.form.company.label}</Label>
               <Input
                 id="company_name"
-                placeholder="请输入公司名称"
+                placeholder={contactContent.form.company.placeholder}
                 value={formData.company_name}
                 onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
               />
             </div>
-            
+
             <div className="space-y-2">
-              <Label htmlFor="contact_name">联系人姓名 *</Label>
+              <Label htmlFor="contact_name">{contactContent.form.name.label}</Label>
               <Input
                 id="contact_name"
-                placeholder="请输入联系人姓名"
+                placeholder={contactContent.form.name.placeholder}
                 value={formData.contact_name}
                 onChange={(e) => setFormData({ ...formData, contact_name: e.target.value })}
                 required
               />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="contact_phone">手机号</Label>
+              <Label htmlFor="contact_phone">{contactContent.form.phone.label}</Label>
               <Input
                 id="contact_phone"
-                placeholder="请输入手机号"
+                placeholder={contactContent.form.phone.placeholder}
                 value={formData.contact_phone}
                 onChange={(e) => setFormData({ ...formData, contact_phone: e.target.value })}
               />
             </div>
-            
+
             <div className="space-y-2">
-              <Label htmlFor="contact_wechat">微信号</Label>
+              <Label htmlFor="contact_wechat">{contactContent.form.wechat.label}</Label>
               <Input
                 id="contact_wechat"
-                placeholder="请输入微信号"
+                placeholder={contactContent.form.wechat.placeholder}
                 value={formData.contact_wechat}
                 onChange={(e) => setFormData({ ...formData, contact_wechat: e.target.value })}
               />
             </div>
-            
+
             <div className="space-y-2">
-              <Label htmlFor="contact_email">邮箱</Label>
+              <Label htmlFor="contact_email">{contactContent.form.email.label}</Label>
               <Input
                 id="contact_email"
                 type="email"
-                placeholder="请输入邮箱"
+                placeholder={contactContent.form.email.placeholder}
                 value={formData.contact_email}
                 onChange={(e) => setFormData({ ...formData, contact_email: e.target.value })}
               />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label>行业</Label>
+              <Label>{contactContent.form.industry.label}</Label>
               <Select
                 value={formData.industry}
                 onValueChange={(value) => setFormData({ ...formData, industry: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="选择行业" />
+                  <SelectValue placeholder={contactContent.form.industry.placeholder} />
                 </SelectTrigger>
                 <SelectContent>
-                  {industries.map((industry) => (
+                  {optionsContent.industries.map((industry: string) => (
                     <SelectItem key={industry} value={industry}>
                       {industry}
                     </SelectItem>
@@ -209,16 +209,16 @@ export function ContactForm() {
             </div>
             
             <div className="space-y-2">
-              <Label>团队规模</Label>
+              <Label>{contactContent.form.size.label}</Label>
               <Select
                 value={formData.company_size}
                 onValueChange={(value) => setFormData({ ...formData, company_size: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="选择团队规模" />
+                  <SelectValue placeholder={contactContent.form.size.placeholder} />
                 </SelectTrigger>
                 <SelectContent>
-                  {companySizes.map((size) => (
+                  {optionsContent.companySizes.map((size: string) => (
                     <SelectItem key={size} value={size}>
                       {size}
                     </SelectItem>
@@ -229,9 +229,9 @@ export function ContactForm() {
           </div>
           
           <div className="space-y-2">
-            <Label>需求类型（可多选）</Label>
+            <Label>{contactContent.form.needs.label}</Label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {needTypes.map((type) => (
+              {optionsContent.needTypes.map((type: string) => (
                 <div key={type} className="flex items-center space-x-2">
                   <Checkbox
                     id={type}
@@ -248,16 +248,16 @@ export function ContactForm() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label>预算范围</Label>
+              <Label>{contactContent.form.budget.label}</Label>
               <Select
                 value={formData.budget_range}
                 onValueChange={(value) => setFormData({ ...formData, budget_range: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="选择预算范围" />
+                  <SelectValue placeholder={contactContent.form.budget.placeholder} />
                 </SelectTrigger>
                 <SelectContent>
-                  {budgetRanges.map((range) => (
+                  {optionsContent.budgetRanges.map((range: string) => (
                     <SelectItem key={range} value={range}>
                       {range}
                     </SelectItem>
@@ -267,16 +267,16 @@ export function ContactForm() {
             </div>
             
             <div className="space-y-2">
-              <Label>期望上线时间</Label>
+              <Label>{contactContent.form.timeline.label}</Label>
               <Select
                 value={formData.expected_timeline}
                 onValueChange={(value) => setFormData({ ...formData, expected_timeline: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="选择期望上线时间" />
+                  <SelectValue placeholder={contactContent.form.timeline.placeholder} />
                 </SelectTrigger>
                 <SelectContent>
-                  {timelines.map((timeline) => (
+                  {optionsContent.timelines.map((timeline: string) => (
                     <SelectItem key={timeline} value={timeline}>
                       {timeline}
                     </SelectItem>
@@ -287,10 +287,10 @@ export function ContactForm() {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="notes">补充说明</Label>
+            <Label htmlFor="notes">{contactContent.form.notes.label}</Label>
             <Textarea
               id="notes"
-              placeholder="请描述您的具体需求或问题..."
+              placeholder={contactContent.form.notes.placeholder}
               rows={4}
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -306,10 +306,10 @@ export function ContactForm() {
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                提交中...
+                {contactContent.form.submitting}
               </>
             ) : (
-              '提交咨询'
+              contactContent.form.submit
             )}
           </Button>
         </form>

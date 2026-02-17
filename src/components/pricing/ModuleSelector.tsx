@@ -11,6 +11,7 @@ import { createClient } from '@/lib/supabase/client'
 import { usePricingStore } from '@/lib/store'
 import type { Module } from '@/lib/constants'
 import { defaultModules } from '@/lib/constants'
+import { pricingContent } from '@/lib/content'
 
 interface ModuleCardProps {
   module: Module
@@ -182,7 +183,7 @@ export function ModuleSelector() {
         <div>
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <span>🧱</span>
-            基础模块（必选）
+            {pricingContent.sections.base}
           </h3>
           <ModuleCard
             module={baseModule}
@@ -192,11 +193,11 @@ export function ModuleSelector() {
           />
         </div>
       )}
-      
+
       <div>
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <span>🔌</span>
-          增值模块（按需勾选）
+          {pricingContent.sections.plugins}
         </h3>
         <div className="space-y-4">
           {pluginModules.map((mod) => (
@@ -213,7 +214,7 @@ export function ModuleSelector() {
       <div>
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <span>🔄</span>
-          持续服务（可选 1 档）
+          {pricingContent.sections.subscription}
         </h3>
         <RadioGroup 
           value={selectedSubscription?.id} 

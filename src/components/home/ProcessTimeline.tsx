@@ -1,39 +1,16 @@
 'use client'
 
 import { MessageCircle, Check, FileCheck, Settings, GraduationCap } from 'lucide-react'
+import { homeContent } from '@/lib/content'
 
-const steps = [
-  {
-    icon: MessageCircle,
-    title: '需求诊断',
-    duration: '1 天',
-    description: '深入了解业务场景，明确 AI 应用场景',
-  },
-  {
-    icon: Check,
-    title: 'Demo 演示',
-    duration: '1 天',
-    description: '展示真实效果，确认方案可行性',
-  },
-  {
-    icon: FileCheck,
-    title: '签约确认',
-    duration: '',
-    description: '明确交付内容和周期，签署服务协议',
-  },
-  {
-    icon: Settings,
-    title: '配置部署',
-    duration: '1-2 天',
-    description: '知识库导入、Prompt 调优、系统集成',
-  },
-  {
-    icon: GraduationCap,
-    title: '培训交付',
-    duration: '半天',
-    description: '使用培训、文档交付、上线支持',
-  },
-]
+const iconMap = [MessageCircle, Check, FileCheck, Settings, GraduationCap]
+
+const steps = homeContent.process.steps.map((step, index) => ({
+  icon: iconMap[index],
+  title: step.title,
+  duration: step.duration,
+  description: (step as { title: string; duration: string; desc: string }).desc,
+}))
 
 export function ProcessTimeline() {
   return (
@@ -42,13 +19,13 @@ export function ProcessTimeline() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="badge-neon mb-6">
-            交付流程
+            {homeContent.process.label}
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-            5 步交付，最快 3 天上线
+            {homeContent.process.title}
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto font-light">
-            标准化交付流程，确保每个项目高质量准时交付
+            {homeContent.process.subtitle}
           </p>
         </div>
         
