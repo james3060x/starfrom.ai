@@ -1,0 +1,47 @@
+{
+  // 一键部署任务
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🚀 部署到生产环境",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "deploy"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [],
+      "detail": "提交并推送代码，触发 Vercel 自动部署"
+    },
+    {
+      "label": "📝 带消息部署",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "deploy:msg", "--msg=${input:commitMsg}"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "commitMsg",
+      "type": "promptString",
+      "description": "输入本次更新说明",
+      "default": "更新网站内容"
+    }
+  ]
+}

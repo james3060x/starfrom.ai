@@ -1,0 +1,7 @@
+{
+  // 部署快捷键
+  "key": "cmd+shift+d",
+  "command": "workbench.action.tasks.runTask",
+  "args": "🚀 部署到生产环境",
+  "when": "editorTextFocus"
+}
