@@ -8,17 +8,22 @@ export const metadata: Metadata = {
 
 export default function DemoPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <div className="min-h-screen relative">
+      <div className="relative pt-32 pb-16">
+        <div className="container max-w-7xl mx-auto px-4 text-center relative z-10">
+          <span className="badge-pink mb-6 inline-block">
+            在线体验
+          </span>
+          <h1 className="font-display text-4xl md:text-5xl text-white mb-4">
             Demo 体验
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
             在线体验 AI Agent 能力，选择不同场景感受效果
           </p>
         </div>
+      </div>
 
+      <div className="container max-w-7xl mx-auto px-4 pb-12">
         <DemoChat />
       </div>
     </div>

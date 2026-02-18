@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Send, Bot, User } from 'lucide-react'
@@ -110,30 +109,30 @@ export function DemoChat() {
   const isLimitReached = turnCount >= 10
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto glass-card">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {scenarios.map((scenario) => (
-          <Card
+          <div
             key={scenario.id}
-            className={`cursor-pointer transition-all ${
+            className={`glass-card cursor-pointer transition-all card-hover ${
               selectedScenario.id === scenario.id
-                ? 'border-[#06b6d4] bg-[#06b6d4]/5'
-                : 'hover:border-gray-300'
+                ? 'border-blue-500/50 bg-blue-500/5'
+                : 'hover:border-white/10'
             }`}
             onClick={() => handleScenarioChange(scenario)}
           >
-            <CardContent className="p-4">
+            <div className="p-4">
               <div className="text-3xl mb-2">{scenario.icon}</div>
-              <h3 className="font-semibold text-gray-900">{scenario.title}</h3>
-              <p className="text-sm text-gray-500">{scenario.description}</p>
-            </CardContent>
-          </Card>
+              <h3 className="font-semibold text-white">{scenario.title}</h3>
+              <p className="text-sm text-white/50">{scenario.description}</p>
+            </div>
+          </div>
         ))}
       </div>
 
-      <Card className="border-0 shadow-lg">
-        <div className="h-1 bg-gradient-to-r from-[#06b6d4] to-[#1e3a5f]" />
-        <CardContent className="p-0">
+      <div className="glass-card overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-pink-400" />
+        <div className="p-0">
           <div className="h-96 overflow-y-auto p-4 space-y-4">
             {messages.map((message, index) => (
               <div
@@ -213,13 +212,13 @@ export function DemoChat() {
           )}
 
           <div className="px-4 pb-4 text-center">
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-white/30">
               Demo 使用 DeepSeek 模型，实际交付可根据需求选择不同模型
               {turnCount > 0 && ` · 剩余对话次数: ${10 - turnCount}`}
             </p>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

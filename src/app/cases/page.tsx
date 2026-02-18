@@ -8,19 +8,22 @@ export const metadata: Metadata = {
 
 export default function CasesPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-br from-[#1e3a5f] to-[#2a4a73] py-16">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+    <div className="min-h-screen relative">
+      <div className="relative pt-32 pb-16">
+        <div className="container max-w-7xl mx-auto px-4 text-center relative z-10">
+          <span className="badge-neon mb-6 inline-block">
+            客户案例
+          </span>
+          <h1 className="font-display text-4xl md:text-5xl text-white mb-4">
             成功案例
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
             看看其他企业如何通过 AI 智能体提升效率
           </p>
         </div>
       </div>
 
-      <div className="container max-w-7xl mx-auto px-4 py-12">
+      <div className="container max-w-7xl mx-auto px-4 pb-12">
         <CasesList />
       </div>
     </div>

@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowRight } from 'lucide-react'
@@ -61,7 +59,7 @@ export function CasesList() {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-80 bg-gray-200 rounded-lg animate-pulse" />
+          <div key={i} className="h-80 bg-white/[0.02] rounded-2xl animate-pulse border border-white/[0.06]" />
         ))}
       </div>
     )
@@ -70,12 +68,12 @@ export function CasesList() {
   return (
     <div>
       <Tabs value={selectedIndustry} onValueChange={setSelectedIndustry} className="mb-8">
-        <TabsList className="flex flex-wrap h-auto gap-2">
+        <TabsList className="flex flex-wrap h-auto gap-2 bg-white/[0.03] border border-white/[0.06] p-1">
           {industries.map((industry) => (
             <TabsTrigger
               key={industry}
               value={industry}
-              className="data-[state=active]:bg-[#1e3a5f] data-[state=active]:text-white"
+              className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 text-white/70"
             >
               {industry}
             </TabsTrigger>
@@ -89,37 +87,41 @@ export function CasesList() {
           const modules = item.modules_used as string[]
 
           return (
-            <Card key={item.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-              <div className="h-1 bg-gradient-to-r from-[#06b6d4] to-[#1e3a5f]" />
-              <CardContent className="p-6">
+            <div key={item.id} className="glass-card overflow-hidden card-hover">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-pink-400" />
+              <div className="p-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <Badge>{item.industry}</Badge>
+                  <span className="px-2 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs">
+                    {item.industry}
+                  </span>
                   {item.company_size && (
-                    <Badge variant="outline">{item.company_size}</Badge>
+                    <span className="px-2 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-white/50 text-xs">
+                      {item.company_size}
+                    </span>
                   )}
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-white mb-4">
                   {item.title}
                 </h3>
 
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2">挑战</h4>
-                  <p className="text-sm text-gray-600 line-clamp-2">{item.challenge}</p>
+                  <h4 className="text-sm font-semibold text-white/70 mb-2">挑战</h4>
+                  <p className="text-sm text-white/50 line-clamp-2">{item.challenge}</p>
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2">解决方案</h4>
-                  <p className="text-sm text-gray-600 line-clamp-2">{item.solution}</p>
+                  <h4 className="text-sm font-semibold text-white/70 mb-2">解决方案</h4>
+                  <p className="text-sm text-white/50 line-clamp-2">{item.solution}</p>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 mb-4">
                   {results?.slice(0, 3).map((result, idx) => (
-                    <div key={idx} className="text-center p-3 bg-gray-50 rounded-lg">
-                      <div className="text-lg font-bold text-[#06b6d4]">
+                    <div key={idx} className="text-center p-3 bg-white/[0.03] rounded-lg border border-white/[0.06]">
+                      <div className="text-lg font-bold gradient-text">
                         {result.value}
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-white/40">
                         {result.metric}
                       </div>
                     </div>
@@ -130,29 +132,29 @@ export function CasesList() {
                   <div className="mb-4">
                     <div className="flex flex-wrap gap-2">
                       {modules.map((moduleId, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-xs">
+                        <span key={idx} className="px-2 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-white/60 text-xs">
                           {moduleId}
-                        </Badge>
+                        </span>
                       ))}
                     </div>
                   </div>
                 )}
 
                 <Link href={`/contact?source=case`}>
-                  <Button variant="outline" className="w-full group">
+                  <Button className="w-full group secondary-btn text-white/70 hover:text-white">
                     我也想要类似方案
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           )
         })}
       </div>
 
       {filteredCases.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-500">暂无该行业的案例</p>
+          <p className="text-white/40">暂无该行业的案例</p>
         </div>
       )}
     </div>
