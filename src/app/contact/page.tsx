@@ -6,8 +6,8 @@ import { Mail, MessageCircle, Clock } from 'lucide-react'
 import { contactContent, siteContent } from '@/lib/content'
 
 export const metadata: Metadata = {
-  title: contactContent.hero.title + ' - ' + siteContent.name,
-  description: '联系 StarFrom AI 获取专属 AI 解决方案，我们的团队将在24小时内与您联系。',
+  title: contactContent['页面头部'].标题 + ' - ' + siteContent['网站基础信息']['网站名称'],
+  description: contactContent['页面头部'].描述,
 }
 
 export default function ContactPage() {
@@ -16,10 +16,10 @@ export default function ContactPage() {
       <div className="bg-gradient-to-br from-[#1e3a5f] to-[#2a4a73] py-16">
         <div className="container max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {contactContent.hero.title}
+            {contactContent['页面头部'].标题}
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            {contactContent.hero.subtitle}
+            {contactContent['页面头部'].描述}
           </p>
         </div>
       </div>
@@ -35,15 +35,15 @@ export default function ContactPage() {
           <div className="lg:col-span-1 space-y-6">
             <Card className="border-0 shadow">
               <CardContent className="p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">{contactContent.info.title}</h3>
+                <h3 className="font-semibold text-gray-900 mb-4">{contactContent['联系方式卡片'].卡片标题}</h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#1e3a5f]/10 rounded-lg flex items-center justify-center">
                       <Mail className="w-5 h-5 text-[#1e3a5f]" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">{contactContent.info.email.label}</p>
-                      <p className="text-gray-900">{contactContent.info.email.value}</p>
+                      <p className="text-sm text-gray-500">{contactContent['联系方式卡片'].邮箱标签}</p>
+                      <p className="text-gray-900">{contactContent['联系方式卡片'].邮箱地址}</p>
                     </div>
                   </div>
 
@@ -52,8 +52,8 @@ export default function ContactPage() {
                       <MessageCircle className="w-5 h-5 text-[#1e3a5f]" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">{contactContent.info.wechat.label}</p>
-                      <p className="text-gray-900">{contactContent.info.wechat.value}</p>
+                      <p className="text-sm text-gray-500">{contactContent['联系方式卡片'].微信标签}</p>
+                      <p className="text-gray-900">{contactContent['联系方式卡片'].微信号}</p>
                     </div>
                   </div>
 
@@ -62,8 +62,8 @@ export default function ContactPage() {
                       <Clock className="w-5 h-5 text-[#1e3a5f]" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">{contactContent.info.workHours.label}</p>
-                      <p className="text-gray-900">{contactContent.info.workHours.value}</p>
+                      <p className="text-sm text-gray-500">{contactContent['联系方式卡片'].工作时间标签}</p>
+                      <p className="text-gray-900">{contactContent['联系方式卡片'].工作时间内容}</p>
                     </div>
                   </div>
                 </div>
@@ -72,23 +72,23 @@ export default function ContactPage() {
 
             <Card className="border-0 shadow">
               <CardContent className="p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">{contactContent.response.title}</h3>
+                <h3 className="font-semibold text-gray-900 mb-4">{contactContent['响应时间卡片'].卡片标题}</h3>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  {contactContent.response.items.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
+                  <li>{contactContent['响应时间卡片'].响应时间1}</li>
+                  <li>{contactContent['响应时间卡片'].响应时间2}</li>
+                  <li>{contactContent['响应时间卡片'].响应时间3}</li>
                 </ul>
               </CardContent>
             </Card>
 
             <div className="bg-[#1e3a5f] rounded-xl p-6 text-center">
-              <p className="text-white font-semibold mb-2">{contactContent.quickDiagnosis.title}</p>
-              <p className="text-gray-300 text-sm mb-4">{contactContent.quickDiagnosis.subtitle}</p>
+              <p className="text-white font-semibold mb-2">{contactContent['快速诊断 CTA'].标题}</p>
+              <p className="text-gray-300 text-sm mb-4">{contactContent['快速诊断 CTA'].描述}</p>
               <a
                 href="/diagnosis"
                 className="inline-block bg-[#06b6d4] hover:bg-[#0891b2] text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
               >
-                {contactContent.quickDiagnosis.button}
+                {contactContent['快速诊断 CTA'].按钮}
               </a>
             </div>
           </div>
