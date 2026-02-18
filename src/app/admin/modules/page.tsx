@@ -28,10 +28,11 @@ export default async function ModulesPage() {
   const modules = await getModules()
   
   return (
-    <div>
+    <div className="bg-[#030305] text-white min-h-screen p-4">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">模块管理</h2>
       
-      <Card>
+      <div className="glass-card border-0">
+        <Card>
         <CardContent className="p-0">
           <Table>
             <TableHeader>
@@ -74,7 +75,8 @@ export default async function ModulesPage() {
             </div>
           )}
         </CardContent>
-      </Card>
+        </Card>
+      </div>
     </div>
   )
 }
