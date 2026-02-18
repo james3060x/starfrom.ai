@@ -511,13 +511,13 @@ export const casesContent = {}
 export const optionsContent = {}
 
 // Helper function to get content with fallback
-export function getContent<T>(content: T, key: string, fallback: string): string {
+export function getContent(content: unknown, key: string, fallback: string): string {
   const keys = key.split('.')
-  let result: any = content
+  let result: unknown = content
   
   for (const k of keys) {
-    if (result && typeof result === 'object' && k in result) {
-      result = result[k]
+    if (result && typeof result === 'object' && result !== null && k in result) {
+      result = (result as Record<string, unknown>)[k]
     } else {
       return fallback
     }
