@@ -9,7 +9,13 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
 import { navContent } from '@/lib/content'
 
-const navItems = navContent['菜单']
+const navItems = [
+  { href: '/services', label: '服务' },
+  { href: '/pricing', label: '定价' },
+  { href: '/cases', label: '案例' },
+  { href: '/demo', label: 'Demo' },
+  { href: '/contact', label: '联系' },
+]
 
 export function Header() {
   const pathname = usePathname()

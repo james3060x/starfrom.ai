@@ -5,13 +5,20 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import { homeContent } from '@/lib/content'
 
-const featuredCases = homeContent['成功案例区域']['案例列表'].map((item: { title: string; industry: string; size: string; metrics: { label: string; value: string }[] }) => ({
-  id: item.title,
-  title: item.title,
-  industry: item.industry,
-  companySize: item.size,
-  metrics: item.metrics,
-}))
+// Build a single case from flat content data
+const featuredCases = [
+  {
+    id: 'case-1',
+    title: homeContent['成功案例区域']['区域标题'],
+    industry: homeContent['成功案例区域']['行业'],
+    companySize: homeContent['成功案例区域']['规模'],
+    metrics: [
+      { label: homeContent['成功案例区域']['数据1'].split(' | ')[0], value: homeContent['成功案例区域']['数据1'].split(' | ')[1] },
+      { label: homeContent['成功案例区域']['数据2'].split(' | ')[0], value: homeContent['成功案例区域']['数据2'].split(' | ')[1] },
+      { label: homeContent['成功案例区域']['数据3'].split(' | ')[0], value: homeContent['成功案例区域']['数据3'].split(' | ')[1] },
+    ],
+  },
+]
 
 export function CaseHighlight() {
   return (

@@ -1,21 +1,17 @@
 'use client'
 
-import { MessageSquare, BookOpen, Workflow } from 'lucide-react'
+import { Workflow } from 'lucide-react'
 import { homeContent } from '@/lib/content'
 
-const iconMap = {
-  MessageSquare,
-  BookOpen,
-  Workflow,
-}
-
-const painPoints = homeContent['痛点区域']['痛点列表'].map((item, index) => ({
-  icon: Object.values(iconMap)[index],
-  title: item.title,
-  solution: item.solution,
-  description: item.description,
-  stat: item.stat,
-}))
+const painPoints = [
+  {
+    icon: Workflow,
+    title: homeContent['痛点区域']['标题'],
+    solution: homeContent['痛点区域']['解决方案'],
+    description: homeContent['痛点区域']['描述'],
+    stat: homeContent['痛点区域']['数据'],
+  },
+]
 
 export function PainPoints() {
   return (

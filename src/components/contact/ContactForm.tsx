@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge'
 import { Check, Loader2 } from 'lucide-react'
 import { usePricingStore } from '@/lib/store'
 import { toast } from 'sonner'
-import { contactContent, optionsContent } from '@/lib/content'
+import { contactContent } from '@/lib/content'
 
 export function ContactForm() {
   const searchParams = useSearchParams()
@@ -199,7 +199,7 @@ export function ContactForm() {
                   <SelectValue placeholder={contactContent['联系表单']['行业占位符']} />
                 </SelectTrigger>
                 <SelectContent>
-                  {optionsContent.industries.map((industry: string) => (
+                  {["电商", "教育", "制造", "医疗", "金融", "通用", "其他"].map((industry: string) => (
                     <SelectItem key={industry} value={industry}>
                       {industry}
                     </SelectItem>
@@ -218,7 +218,7 @@ export function ContactForm() {
                   <SelectValue placeholder={contactContent['联系表单']['团队规模占位符']} />
                 </SelectTrigger>
                 <SelectContent>
-                  {optionsContent.companySizes.map((size: string) => (
+                  {["1-10人", "10-50人", "50-200人", "200人以上"].map((size: string) => (
                     <SelectItem key={size} value={size}>
                       {size}
                     </SelectItem>
@@ -231,7 +231,7 @@ export function ContactForm() {
           <div className="space-y-2">
             <Label>{contactContent['联系表单']['需求类型标签']}</Label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {optionsContent.needTypes.map((type: string) => (
+              {["智能客服", "知识库问答", "内容生成", "数据分析", "流程自动化", "系统集成", "私有化部署", "其他"].map((type: string) => (
                 <div key={type} className="flex items-center space-x-2">
                   <Checkbox
                     id={type}
@@ -257,7 +257,7 @@ export function ContactForm() {
                   <SelectValue placeholder={contactContent['联系表单']['预算范围占位符']} />
                 </SelectTrigger>
                 <SelectContent>
-                  {optionsContent.budgetRanges.map((range: string) => (
+                  {["1-3万", "3-10万", "10-30万", "30万以上", "不确定"].map((range: string) => (
                     <SelectItem key={range} value={range}>
                       {range}
                     </SelectItem>
@@ -276,7 +276,7 @@ export function ContactForm() {
                   <SelectValue placeholder={contactContent['联系表单']['上线时间占位符']} />
                 </SelectTrigger>
                 <SelectContent>
-                  {optionsContent.timelines.map((timeline: string) => (
+                  {["1周内", "1个月内", "3个月内", "不确定"].map((timeline: string) => (
                     <SelectItem key={timeline} value={timeline}>
                       {timeline}
                     </SelectItem>

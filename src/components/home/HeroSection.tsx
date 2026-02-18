@@ -8,7 +8,7 @@ import { homeContent } from '@/lib/content'
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const { hero } = homeContent
+  const hero = homeContent['Hero 区域（首屏）']
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -22,9 +22,9 @@ export function HeroSection() {
   }, [])
 
   const features = [
-    { icon: Clock, label: hero.pills[0].label, desc: hero.pills[0].desc },
-    { icon: Zap, label: hero.pills[1].label, desc: hero.pills[1].desc },
-    { icon: Shield, label: hero.pills[2].label, desc: hero.pills[2].desc },
+    { icon: Clock, label: '3天交付', desc: '极速上线' },
+    { icon: Zap, label: '¥1万起', desc: '超高性价比' },
+    { icon: Shield, label: '数据不出境', desc: '安全合规' },
   ]
 
   return (
@@ -53,23 +53,23 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.1] backdrop-blur-sm mb-10">
             <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-sm text-white/70">{hero.badge}</span>
-            <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-xs font-mono">{hero.version}</span>
+            <span className="text-sm text-white/70">{hero['标签']}</span>
+            <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-xs font-mono">{hero['版本号']}</span>
           </div>
           
           {/* Main Heading */}
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[1.1]">
-            <span className="block mb-2">{hero.title}</span>
-            <span className="gradient-text">{hero.titleHighlight}</span>
+            <span className="block mb-2">{hero['主标题']}</span>
+            <span className="gradient-text">{hero['主标题高亮']}</span>
           </h1>
           
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-white/50 mb-6 max-w-2xl mx-auto leading-relaxed">
-            {hero.subtitle.split(hero.subtitleHighlight1)[0]}<span className="text-blue-400 font-semibold">{hero.subtitleHighlight1}</span>{hero.subtitle.split(hero.subtitleHighlight1)[1].split(hero.subtitleHighlight2)[0]}<span className="gold-text font-semibold">{hero.subtitleHighlight2}</span>{hero.subtitle.split(hero.subtitleHighlight2)[1]}
+            {hero['副标题']}
           </p>
           
           <p className="text-base text-white/40 mb-12 max-w-xl mx-auto">
-            {hero.features}
+            {hero['功能列表']}
           </p>
           
           {/* CTA Buttons */}
@@ -77,16 +77,14 @@ export function HeroSection() {
             <Link href="/diagnosis">
               <Button size="lg" className="glow-btn text-white px-8 py-6 text-lg group">
                 <Sparkles className="mr-2 w-5 h-5" />
-                {hero.ctaPrimary}
+                {hero['CTA 主按钮']}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
+            
             <Link href="/services">
-              <Button 
-                size="lg" 
-                className="secondary-btn text-white/80 px-8 py-6 text-lg hover:text-white"
-              >
-                {hero.ctaSecondary}
+              <Button size="lg" className="bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] text-white/70 hover:text-white px-8 py-6 text-lg backdrop-blur-sm">
+                {hero['CTA 次按钮']}
               </Button>
             </Link>
           </div>
@@ -96,11 +94,11 @@ export function HeroSection() {
             {features.map((feature, index) => (
               <div 
                 key={index}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm hover:bg-white/[0.05] hover:border-blue-500/20 transition-all duration-300"
+                className="flex items-center gap-3 px-5 py-3 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm"
               >
                 <feature.icon className="w-5 h-5 text-blue-400" />
                 <div className="text-left">
-                  <div className="text-white text-sm font-semibold">{feature.label}</div>
+                  <div className="text-white text-sm font-medium">{feature.label}</div>
                   <div className="text-white/40 text-xs">{feature.desc}</div>
                 </div>
               </div>
@@ -108,9 +106,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#050508] to-transparent" />
     </section>
   )
 }

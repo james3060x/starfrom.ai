@@ -16,9 +16,9 @@ export function Footer() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
       
       <div className="container max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div>
             <Link href="/" className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
                 <Sparkles className="w-5 h-5 text-white" />
@@ -45,53 +45,6 @@ export function Footer() {
                 </a>
               ))}
             </div>
-          </div>
-
-          {/* Links */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">{footerContent['链接']['产品']['标题']}</h4>
-            <ul className="space-y-3">
-              {footerContent['链接']['产品']['项目'].map((link: { label: string; href: string }) => (
-                <li key={link.label}>
-                  <Link 
-                    href={link.href}
-                    className="text-white/40 hover:text-blue-400 text-sm transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">{footerContent['链接']['公司']['标题']}</h4>
-            <ul className="space-y-3">
-              {footerContent['链接']['公司']['项目'].map((link: { label: string; href: string }) => (
-                <li key={link.label}>
-                  <Link 
-                    href={link.href}
-                    className="text-white/40 hover:text-blue-400 text-sm transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">{footerContent['链接']['资源']['标题']}</h4>
-            <ul className="space-y-3">
-              {footerContent['链接']['资源']['项目'].map((link: { label: string; href: string }) => (
-                <li key={link.label}>
-                  <Link 
-                    href={link.href}
-                    className="text-white/40 hover:text-blue-400 text-sm transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 

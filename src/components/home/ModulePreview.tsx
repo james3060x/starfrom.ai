@@ -7,13 +7,21 @@ import { homeContent } from '@/lib/content'
 
 const iconMap = [Database, Bot, Link2, Globe]
 
-const baseFeatures = homeContent['产品服务区域']['模块特性']
+// Build features from 模块1-4
+const baseFeatures = [
+  homeContent['产品服务区域']['模块1'],
+  homeContent['产品服务区域']['模块2'],
+  homeContent['产品服务区域']['模块3'],
+  homeContent['产品服务区域']['模块4'],
+]
 
-const plugins = homeContent['产品服务区域']['插件模块'].map((plugin, index) => ({
-  icon: iconMap[index],
-  title: plugin.title,
-  desc: plugin.desc,
-}))
+// Build plugins from 模块1-4 with icons
+const plugins = [
+  { icon: iconMap[0], title: homeContent['产品服务区域']['模块1'].split(' | ')[0], desc: homeContent['产品服务区域']['模块1'].split(' | ')[1] || '' },
+  { icon: iconMap[1], title: homeContent['产品服务区域']['模块2'].split(' | ')[0], desc: homeContent['产品服务区域']['模块2'].split(' | ')[1] || '' },
+  { icon: iconMap[2], title: homeContent['产品服务区域']['模块3'].split(' | ')[0], desc: homeContent['产品服务区域']['模块3'].split(' | ')[1] || '' },
+  { icon: iconMap[3], title: homeContent['产品服务区域']['模块4'].split(' | ')[0], desc: homeContent['产品服务区域']['模块4'].split(' | ')[1] || '' },
+]
 
 export function ModulePreview() {
   return (
@@ -65,8 +73,7 @@ export function ModulePreview() {
               <div className="flex items-end justify-between pt-6 border-t border-white/[0.06]">
                 <div>
                   <span className="text-3xl font-semibold text-white">{homeContent['产品服务区域']['价格']}</span>
-                  <span className="text-white/40 ml-1">{homeContent['产品服务区域']['价格']Note}</span>
-                  <p className="text-white/30 text-sm mt-1">{homeContent['产品服务区域']['价格']Desc}</p>
+                  <span className="text-white/40 ml-1">{homeContent['产品服务区域']['价格说明']}</span>
                 </div>
               </div>
             </div>

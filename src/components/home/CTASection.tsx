@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from 'lucide-react'
 import { homeContent } from '@/lib/content'
 
 export function CTASection() {
-  const { cta } = homeContent
+  const cta = homeContent['CTA 区域（底部转化）']
 
   return (
     <section className="relative py-32">
@@ -19,24 +19,24 @@ export function CTASection() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-8">
               <Sparkles className="w-4 h-4 text-blue-400" />
-              <span className="text-blue-400 text-sm">{cta.badge}</span>
+              <span className="text-blue-400 text-sm">{cta['标签']}</span>
             </div>
 
             {/* Heading */}
             <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-              {cta.title}<br />
-              <span className="gradient-text">{cta.titleHighlight}</span>？
+              {cta['标题']}<br />
+              <span className="gradient-text">{cta['标题高亮']}</span>？
             </h2>
 
             {/* Description */}
             <p className="text-lg text-white/50 mb-10 max-w-xl mx-auto font-light">
-              {cta.description}
+              {cta['描述']}
             </p>
 
             {/* CTA Button */}
             <Link href="/diagnosis">
               <Button size="lg" className="glow-btn text-white px-10 py-7 text-lg">
-                {cta.button}
+                {cta['按钮']}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>

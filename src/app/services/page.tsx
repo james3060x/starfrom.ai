@@ -32,7 +32,7 @@ export default function ServicesPage() {
         <div className="my-12 text-center">
           <Link href="/pricing">
             <Button size="lg" className="bg-[#06b6d4] hover:bg-[#0891b2]">
-              {servicesContent['CTA 按钮']['按钮文字']}
+              {servicesContent['CTA 按钮（模块之间）']['按钮文字']}
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </Link>
