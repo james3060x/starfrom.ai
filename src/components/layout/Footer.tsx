@@ -29,7 +29,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-white/40 text-sm leading-relaxed mb-6 max-w-xs">
-              {footerContent.description}
+              {footerContent['品牌区域']['描述']}
             </p>
             
             {/* Social Links */}
@@ -49,9 +49,9 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">{footerContent.links.product.title}</h4>
+            <h4 className="text-white font-semibold text-sm mb-4">{footerContent['链接']['产品']['标题']}</h4>
             <ul className="space-y-3">
-              {footerContent.links.product.items.map((link: { label: string; href: string }) => (
+              {footerContent['链接']['产品']['项目'].map((link: { label: string; href: string }) => (
                 <li key={link.label}>
                   <Link 
                     href={link.href}
@@ -64,9 +64,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">{footerContent.links.company.title}</h4>
+            <h4 className="text-white font-semibold text-sm mb-4">{footerContent['链接']['公司']['标题']}</h4>
             <ul className="space-y-3">
-              {footerContent.links.company.items.map((link: { label: string; href: string }) => (
+              {footerContent['链接']['公司']['项目'].map((link: { label: string; href: string }) => (
                 <li key={link.label}>
                   <Link 
                     href={link.href}
@@ -79,9 +79,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">{footerContent.links.resources.title}</h4>
+            <h4 className="text-white font-semibold text-sm mb-4">{footerContent['链接']['资源']['标题']}</h4>
             <ul className="space-y-3">
-              {footerContent.links.resources.items.map((link: { label: string; href: string }) => (
+              {footerContent['链接']['资源']['项目'].map((link: { label: string; href: string }) => (
                 <li key={link.label}>
                   <Link 
                     href={link.href}
@@ -98,12 +98,12 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-sm">
-            {siteContent.copyright}
+            {siteContent['网站基础信息']['版权']}
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="#" className="text-white/30 hover:text-white/60">{footerContent.bottom.privacy}</Link>
-            <Link href="#" className="text-white/30 hover:text-white/60">{footerContent.bottom.terms}</Link>
-            <span className="text-white/20">{footerContent.bottom.compliance}</span>
+            <Link href="#" className="text-white/30 hover:text-white/60">{footerContent['底部信息']['隐私政策']}</Link>
+            <Link href="#" className="text-white/30 hover:text-white/60">{footerContent['底部信息']['服务条款']}</Link>
+            <span className="text-white/20">{footerContent['底部信息']['合规声明']}</span>
           </div>
         </div>
       </div>

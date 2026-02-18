@@ -7,9 +7,9 @@ import { homeContent } from '@/lib/content'
 
 const iconMap = [Database, Bot, Link2, Globe]
 
-const baseFeatures = homeContent.modules.baseModule.features
+const baseFeatures = homeContent['产品服务区域']['模块特性']
 
-const plugins = homeContent.modules.plugins.map((plugin, index) => ({
+const plugins = homeContent['产品服务区域']['插件模块'].map((plugin, index) => ({
   icon: iconMap[index],
   title: plugin.title,
   desc: plugin.desc,
@@ -22,13 +22,13 @@ export function ModulePreview() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="badge-pink mb-6">
-            {homeContent.modules.label}
+            {homeContent['产品服务区域']['区域标签']}
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-            {homeContent.modules.title}
+            {homeContent['产品服务区域']['区域标题']}
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto font-light">
-            {homeContent.modules.subtitle}
+            {homeContent['产品服务区域']['区域描述']}
           </p>
         </div>
         
@@ -46,8 +46,8 @@ export function ModulePreview() {
                   <Layers className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold text-white mb-1">{homeContent.modules.baseModule.title}</h3>
-                  <p className="text-white/40 text-sm">{homeContent.modules.baseModule.subtitle}</p>
+                  <h3 className="text-2xl font-semibold text-white mb-1">{homeContent['产品服务区域']['标题']}</h3>
+                  <p className="text-white/40 text-sm">{homeContent['产品服务区域']['副标题']}</p>
                 </div>
               </div>
               
@@ -64,9 +64,9 @@ export function ModulePreview() {
               {/* Price & CTA */}
               <div className="flex items-end justify-between pt-6 border-t border-white/[0.06]">
                 <div>
-                  <span className="text-3xl font-semibold text-white">{homeContent.modules.baseModule.price}</span>
-                  <span className="text-white/40 ml-1">{homeContent.modules.baseModule.priceNote}</span>
-                  <p className="text-white/30 text-sm mt-1">{homeContent.modules.baseModule.priceDesc}</p>
+                  <span className="text-3xl font-semibold text-white">{homeContent['产品服务区域']['价格']}</span>
+                  <span className="text-white/40 ml-1">{homeContent['产品服务区域']['价格']Note}</span>
+                  <p className="text-white/30 text-sm mt-1">{homeContent['产品服务区域']['价格']Desc}</p>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ export function ModulePreview() {
         <div className="text-center">
           <Link href="/pricing">
             <Button size="lg" className="glow-btn text-white px-8">
-              {homeContent.modules.cta}
+              {homeContent['产品服务区域']['CTA按钮']}
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </Link>

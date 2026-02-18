@@ -9,7 +9,7 @@ const iconMap = {
   Workflow,
 }
 
-const painPoints = homeContent.painPoints.items.map((item, index) => ({
+const painPoints = homeContent['痛点区域']['痛点列表'].map((item, index) => ({
   icon: Object.values(iconMap)[index],
   title: item.title,
   solution: item.solution,
@@ -24,13 +24,13 @@ export function PainPoints() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="badge-neon mb-6">
-            {homeContent.painPoints.label}
+            {homeContent['痛点区域']['区域标签']}
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-            {homeContent.painPoints.title}
+            {homeContent['痛点区域']['区域标题']}
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto font-light">
-            {homeContent.painPoints.subtitle}
+            {homeContent['痛点区域']['区域描述']}
           </p>
         </div>
         

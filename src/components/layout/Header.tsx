@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
 import { navContent } from '@/lib/content'
 
-const navItems = navContent.menu
+const navItems = navContent['菜单']
 
 export function Header() {
   const pathname = usePathname()
@@ -37,8 +37,8 @@ export function Header() {
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div className="flex items-baseline gap-0.5">
-            <span className="text-xl font-bold text-white tracking-tight">{navContent.logo.brand}</span>
-            <span className="text-xl font-bold text-blue-400">{navContent.logo.suffix}</span>
+            <span className="text-xl font-bold text-white tracking-tight">{navContent['品牌名']}</span>
+            <span className="text-xl font-bold text-blue-400">{navContent['后缀']}</span>
           </div>
         </Link>
 
@@ -69,7 +69,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link href="/diagnosis" className="hidden sm:block">
             <Button size="sm" className="glow-btn text-white font-semibold text-sm px-5">
-              {navContent.cta}
+              {navContent['主按钮']}
             </Button>
           </Link>
 
@@ -98,7 +98,7 @@ export function Header() {
                 ))}
                 <Link href="/diagnosis" onClick={() => setIsOpen(false)} className="mt-4">
                   <Button className="w-full glow-btn text-white font-semibold">
-                    {navContent.cta}
+                    {navContent['主按钮']}
                   </Button>
                 </Link>
               </nav>

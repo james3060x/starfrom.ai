@@ -21,11 +21,11 @@ export function PriceSummaryBar() {
     <Card className="sticky top-24 border-0 shadow-xl">
       <div className="h-1 bg-gradient-to-r from-[#06b6d4] to-[#1e3a5f]" />
       <CardHeader className="pb-2">
-        <h3 className="text-lg font-bold text-gray-900">{pricingContent.summary.title}</h3>
+        <h3 className="text-lg font-bold text-gray-900">{pricingContent['价格汇总栏']['标题']}</h3>
       </CardHeader>
       <CardContent>
         {baseModules.length === 0 ? (
-          <p className="text-gray-500 text-center py-8">{pricingContent.summary.empty}</p>
+          <p className="text-gray-500 text-center py-8">{pricingContent['价格汇总栏']['空状态提示']}</p>
         ) : (
           <>
             <div className="space-y-3 mb-6 max-h-64 overflow-y-auto">
@@ -68,7 +68,7 @@ export function PriceSummaryBar() {
             
             <div className="border-t pt-4 space-y-3">
               <div className="flex items-baseline justify-between">
-                <span className="text-gray-600">{pricingContent.summary.onetime}</span>
+                <span className="text-gray-600">{pricingContent['价格汇总栏']['一次性费用标签']}</span>
                 <div className="text-right">
                   <span className="text-2xl font-bold text-[#1e3a5f]">
                     ¥{minPrice.toLocaleString()} - {maxPrice.toLocaleString()}
@@ -78,7 +78,7 @@ export function PriceSummaryBar() {
 
               {monthly > 0 && (
                 <div className="flex items-baseline justify-between">
-                  <span className="text-gray-600">{pricingContent.summary.monthly}</span>
+                  <span className="text-gray-600">{pricingContent['价格汇总栏']['月度费用标签']}</span>
                   <span className="text-lg font-semibold text-[#06b6d4]">
                     ¥{monthly.toLocaleString()}/月
                   </span>
@@ -88,13 +88,13 @@ export function PriceSummaryBar() {
 
             <Link href={`/contact?source=pricing`}>
               <Button className="w-full mt-6 bg-[#06b6d4] hover:bg-[#0891b2]" size="lg">
-                {pricingContent.summary.button}
+                {pricingContent['价格汇总栏']['按钮']}
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
 
             <p className="text-xs text-gray-400 text-center mt-3">
-              {pricingContent.summary.note}
+              {pricingContent['价格汇总栏']['提示文字']}
             </p>
           </>
         )}

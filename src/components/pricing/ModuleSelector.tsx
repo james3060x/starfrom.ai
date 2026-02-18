@@ -183,7 +183,7 @@ export function ModuleSelector() {
         <div>
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <span>🧱</span>
-            {pricingContent.sections.base}
+            {pricingContent['模块选择器']['基础模块标题']}
           </h3>
           <ModuleCard
             module={baseModule}
@@ -197,7 +197,7 @@ export function ModuleSelector() {
       <div>
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <span>🔌</span>
-          {pricingContent.sections.plugins}
+          {pricingContent['模块选择器']['增值模块标题']}
         </h3>
         <div className="space-y-4">
           {pluginModules.map((mod) => (
@@ -214,7 +214,7 @@ export function ModuleSelector() {
       <div>
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <span>🔄</span>
-          {pricingContent.sections.subscription}
+          {pricingContent['模块选择器']['持续服务标题']}
         </h3>
         <RadioGroup 
           value={selectedSubscription?.id} 

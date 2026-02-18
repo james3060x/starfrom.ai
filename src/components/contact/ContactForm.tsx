@@ -102,13 +102,13 @@ export function ContactForm() {
             <Check className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            {contactContent.success.title}
+            {contactContent['提交成功页面']['标题']}
           </h3>
           <p className="text-gray-600 mb-2">
-            {contactContent.success.message}
+            {contactContent['提交成功页面']['提示1']}
           </p>
           <p className="text-gray-500 text-sm">
-            {contactContent.success.urgent}
+            {contactContent['提交成功页面']['提示2']}
           </p>
         </CardContent>
       </Card>
@@ -134,20 +134,20 @@ export function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="company_name">{contactContent.form.company.label}</Label>
+              <Label htmlFor="company_name">{contactContent['联系表单']['公司名称标签']}</Label>
               <Input
                 id="company_name"
-                placeholder={contactContent.form.company.placeholder}
+                placeholder={contactContent['联系表单']['公司名称占位符']}
                 value={formData.company_name}
                 onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="contact_name">{contactContent.form.name.label}</Label>
+              <Label htmlFor="contact_name">{contactContent['联系表单']['联系人标签']}</Label>
               <Input
                 id="contact_name"
-                placeholder={contactContent.form.name.placeholder}
+                placeholder={contactContent['联系表单']['联系人占位符']}
                 value={formData.contact_name}
                 onChange={(e) => setFormData({ ...formData, contact_name: e.target.value })}
                 required
@@ -157,31 +157,31 @@ export function ContactForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="contact_phone">{contactContent.form.phone.label}</Label>
+              <Label htmlFor="contact_phone">{contactContent['联系表单']['手机号标签']}</Label>
               <Input
                 id="contact_phone"
-                placeholder={contactContent.form.phone.placeholder}
+                placeholder={contactContent['联系表单']['手机号占位符']}
                 value={formData.contact_phone}
                 onChange={(e) => setFormData({ ...formData, contact_phone: e.target.value })}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="contact_wechat">{contactContent.form.wechat.label}</Label>
+              <Label htmlFor="contact_wechat">{contactContent['联系表单']['微信号标签']}</Label>
               <Input
                 id="contact_wechat"
-                placeholder={contactContent.form.wechat.placeholder}
+                placeholder={contactContent['联系表单']['微信号占位符']}
                 value={formData.contact_wechat}
                 onChange={(e) => setFormData({ ...formData, contact_wechat: e.target.value })}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="contact_email">{contactContent.form.email.label}</Label>
+              <Label htmlFor="contact_email">{contactContent['联系表单']['邮箱标签']}</Label>
               <Input
                 id="contact_email"
                 type="email"
-                placeholder={contactContent.form.email.placeholder}
+                placeholder={contactContent['联系表单']['邮箱占位符']}
                 value={formData.contact_email}
                 onChange={(e) => setFormData({ ...formData, contact_email: e.target.value })}
               />
@@ -190,13 +190,13 @@ export function ContactForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label>{contactContent.form.industry.label}</Label>
+              <Label>{contactContent['联系表单']['行业标签']}</Label>
               <Select
                 value={formData.industry}
                 onValueChange={(value) => setFormData({ ...formData, industry: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={contactContent.form.industry.placeholder} />
+                  <SelectValue placeholder={contactContent['联系表单']['行业占位符']} />
                 </SelectTrigger>
                 <SelectContent>
                   {optionsContent.industries.map((industry: string) => (
@@ -209,13 +209,13 @@ export function ContactForm() {
             </div>
             
             <div className="space-y-2">
-              <Label>{contactContent.form.size.label}</Label>
+              <Label>{contactContent['联系表单']['团队规模标签']}</Label>
               <Select
                 value={formData.company_size}
                 onValueChange={(value) => setFormData({ ...formData, company_size: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={contactContent.form.size.placeholder} />
+                  <SelectValue placeholder={contactContent['联系表单']['团队规模占位符']} />
                 </SelectTrigger>
                 <SelectContent>
                   {optionsContent.companySizes.map((size: string) => (
@@ -229,7 +229,7 @@ export function ContactForm() {
           </div>
           
           <div className="space-y-2">
-            <Label>{contactContent.form.needs.label}</Label>
+            <Label>{contactContent['联系表单']['需求类型标签']}</Label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {optionsContent.needTypes.map((type: string) => (
                 <div key={type} className="flex items-center space-x-2">
@@ -248,13 +248,13 @@ export function ContactForm() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label>{contactContent.form.budget.label}</Label>
+              <Label>{contactContent['联系表单']['预算范围标签']}</Label>
               <Select
                 value={formData.budget_range}
                 onValueChange={(value) => setFormData({ ...formData, budget_range: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={contactContent.form.budget.placeholder} />
+                  <SelectValue placeholder={contactContent['联系表单']['预算范围占位符']} />
                 </SelectTrigger>
                 <SelectContent>
                   {optionsContent.budgetRanges.map((range: string) => (
@@ -267,13 +267,13 @@ export function ContactForm() {
             </div>
             
             <div className="space-y-2">
-              <Label>{contactContent.form.timeline.label}</Label>
+              <Label>{contactContent['联系表单']['上线时间标签']}</Label>
               <Select
                 value={formData.expected_timeline}
                 onValueChange={(value) => setFormData({ ...formData, expected_timeline: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={contactContent.form.timeline.placeholder} />
+                  <SelectValue placeholder={contactContent['联系表单']['上线时间占位符']} />
                 </SelectTrigger>
                 <SelectContent>
                   {optionsContent.timelines.map((timeline: string) => (
@@ -287,10 +287,10 @@ export function ContactForm() {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="notes">{contactContent.form.notes.label}</Label>
+            <Label htmlFor="notes">{contactContent['联系表单']['补充说明标签']}</Label>
             <Textarea
               id="notes"
-              placeholder={contactContent.form.notes.placeholder}
+              placeholder={contactContent['联系表单']['补充说明占位符']}
               rows={4}
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -306,10 +306,10 @@ export function ContactForm() {
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {contactContent.form.submitting}
+                {contactContent['联系表单']['提交中']}
               </>
             ) : (
-              contactContent.form.submit
+              contactContent['联系表单']['提交按钮']
             )}
           </Button>
         </form>

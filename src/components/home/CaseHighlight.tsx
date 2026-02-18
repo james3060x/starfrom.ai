@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import { homeContent } from '@/lib/content'
 
-const featuredCases = homeContent.cases.items.map((item: { title: string; industry: string; size: string; metrics: { label: string; value: string }[] }) => ({
+const featuredCases = homeContent['成功案例区域']['案例列表'].map((item: { title: string; industry: string; size: string; metrics: { label: string; value: string }[] }) => ({
   id: item.title,
   title: item.title,
   industry: item.industry,
@@ -20,13 +20,13 @@ export function CaseHighlight() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <span className="badge-neon mb-6">
-            {homeContent.cases.label}
+            {homeContent['成功案例区域']['区域标签']}
           </span>
           <h2 className="font-display text-4xl md:text-5xl text-white mb-5">
-            {homeContent.cases.title}
+            {homeContent['成功案例区域']['区域标题']}
           </h2>
           <p className="text-lg text-white/40 max-w-2xl mx-auto font-light">
-            {homeContent.cases.subtitle}
+            {homeContent['成功案例区域']['区域描述']}
           </p>
         </div>
         
@@ -64,7 +64,7 @@ export function CaseHighlight() {
         <div className="text-center">
           <Link href="/cases">
             <Button size="lg" className="secondary-btn text-white/70 hover:text-white px-8">
-              {homeContent.cases.cta}
+              {homeContent['成功案例区域']['CTA按钮']}
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </Link>
