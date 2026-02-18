@@ -60,9 +60,9 @@ export default async function ModulesPage() {
                     ¥{module.price_min?.toLocaleString()} - {module.price_max?.toLocaleString()}
                   </TableCell>
                   <TableCell>
-                    <Badge className={module.is_active ? 'bg-green-500' : 'bg-gray-500'}>
-                      {module.is_active ? '启用' : '禁用'}
-                    </Badge>
+                  <Badge className={module.is_active ? 'bg-green-500/60 text-white' : 'bg-white/[0.08] text-white'}>
+                    {module.is_active ? '启用' : '禁用'}
+                  </Badge>
                   </TableCell>
                 </TableRow>
               ))}
