@@ -149,7 +149,7 @@ export function DemoChat() {
                   )}
                 </div>
                 <div className={`max-w-[80%] p-3 rounded-2xl ${
-                  message.role === 'user' ? 'bg-[#1e3a5f] text-white border border-blue-500/20' : 'bg-white/10 text-white'
+                  message.role === 'user' ? 'bg-[#1e3a5f] text-white border border-blue-500/20 shadow-sm' : 'bg-white/15 text-gray-900 border border-white/[0.4] shadow-sm'
                 }`}>
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 </div>
