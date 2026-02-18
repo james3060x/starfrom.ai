@@ -4,8 +4,8 @@ import { PriceSummaryBar } from '@/components/pricing/PriceSummaryBar'
 import { pricingContent, siteContent } from '@/lib/content'
 
 export const metadata: Metadata = {
-  title: pricingContent.hero.title + ' - ' + siteContent.name,
-  description: '根据您的业务需求，灵活选择 AI 服务模块，实时计算价格，获取专属报价方案。',
+  title: pricingContent['页面头部'].标题 + ' - ' + siteContent['网站基础信息']['网站名称'],
+  description: pricingContent['页面头部'].描述,
 }
 
 export default function PricingPage() {
@@ -14,10 +14,10 @@ export default function PricingPage() {
       <div className="bg-gradient-to-br from-[#1e3a5f] to-[#2a4a73] py-16">
         <div className="container max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {pricingContent.hero.title}
+            {pricingContent['页面头部'].标题}
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            {pricingContent.hero.subtitle}
+            {pricingContent['页面头部'].描述}
           </p>
         </div>
       </div>
