@@ -11,10 +11,10 @@ export default function DemoPage() {
     <div className="min-h-screen bg-[#030305] text-white relative">
       <div className="relative pt-32 pb-16">
         <div className="container max-w-7xl mx-auto px-4 text-center relative z-10">
-          <span className="badge-pink mb-6 inline-block">
+          <span className="badge-neon mb-6 inline-block">
             在线体验
           </span>
-          <h1 className="font-display text-4xl md:text-5xl text-white mb-4">
+          <h1 className="font-display text-4xl md:text-5xl text-white gradient-text mb-4">
             Demo 体验
           </h1>
           <p className="text-lg text-white/50 max-w-2xl mx-auto">
