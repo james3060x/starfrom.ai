@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Sparkles, Github, Twitter, Mail, MessageCircle } from 'lucide-react'
-import { footerContent, siteContent } from '@/lib/content'
+import { footerContent } from '@/lib/content'
 
 const socialLinks = [
   { icon: Github, href: '#', label: 'GitHub' },
@@ -51,7 +51,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-sm">
-            {siteContent['网站基础信息']['版权']}
+            {footerContent['底部信息']['版权']}
           </p>
           <div className="flex items-center gap-6 text-sm">
             <Link href="#" className="text-white/30 hover:text-white/60">{footerContent['底部信息']['隐私政策']}</Link>
