@@ -137,14 +137,10 @@ export function DemoChat() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex items-start gap-3 ${
-                  message.role === 'user' ? 'flex-row-reverse' : ''
-                }`}
+                className={`flex items-start gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  message.role === 'user'
-                    ? 'bg-[#1e3a5f]'
-                    : 'bg-[#06b6d4]'
+                  message.role === 'user' ? 'bg-[#1e3a5f]' : 'bg-[#06b6d4]'
                 }`}>
                   {message.role === 'user' ? (
                     <User className="w-4 h-4 text-white" />
@@ -153,9 +149,7 @@ export function DemoChat() {
                   )}
                 </div>
                 <div className={`max-w-[80%] p-3 rounded-2xl ${
-                  message.role === 'user'
-                    ? 'bg-[#1e3a5f] text-white rounded-tr-sm'
-                    : 'bg-gray-100 text-gray-900 rounded-tl-sm'
+                  message.role === 'user' ? 'bg-[#1e3a5f] text-white border border-blue-500/20' : 'bg-white/10 text-white'
                 }`}>
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 </div>

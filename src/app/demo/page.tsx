@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function DemoPage() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen bg-[#030305] text-white relative">
       <div className="relative pt-32 pb-16">
         <div className="container max-w-7xl mx-auto px-4 text-center relative z-10">
           <span className="badge-pink mb-6 inline-block">
