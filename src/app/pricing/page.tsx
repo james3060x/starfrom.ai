@@ -10,24 +10,27 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-br from-[#1e3a5f] to-[#2a4a73] py-16">
-        <div className="container max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+    <div className="min-h-screen relative">
+      <div className="relative pt-32 pb-16">
+        <div className="container max-w-7xl mx-auto px-4 text-center relative z-10">
+          <span className="badge-pink mb-6 inline-block">
+            模块化定价
+          </span>
+          <h1 className="font-display text-4xl md:text-5xl text-white mb-4">
             {pricingContent['页面头部'].标题}
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
             {pricingContent['页面头部'].描述}
           </p>
         </div>
       </div>
-      
+
       <div className="container max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <ModuleSelector />
           </div>
-          
+
           <div className="lg:col-span-1">
             <PriceSummaryBar />
           </div>

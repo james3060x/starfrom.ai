@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Badge } from '@/components/ui/badge'
 import { Check, Loader2 } from 'lucide-react'
 import { usePricingStore } from '@/lib/store'
 import { toast } from 'sonner'
@@ -96,41 +94,41 @@ export function ContactForm() {
   
   if (isSubmitted) {
     return (
-      <Card className="border-0 shadow-lg">
-        <CardContent className="p-12 text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Check className="w-8 h-8 text-green-600" />
+      <div className="glass-card">
+        <div className="p-12 text-center">
+          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-500/30">
+            <Check className="w-8 h-8 text-green-400" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <h3 className="text-2xl font-bold text-white mb-4">
             {contactContent['提交成功页面']['标题']}
           </h3>
-          <p className="text-gray-600 mb-2">
+          <p className="text-white/60 mb-2">
             {contactContent['提交成功页面']['提示1']}
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-white/40 text-sm">
             {contactContent['提交成功页面']['提示2']}
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     )
   }
   
   return (
-    <Card className="border-0 shadow-lg">
-      <CardContent className="p-8">
+    <div className="glass-card">
+      <div className="p-8">
         {hasModules && (
-          <div className="mb-6 p-4 bg-[#06b6d4]/10 rounded-lg">
-            <p className="text-sm text-gray-600 mb-2">您已选择的模块：</p>
+          <div className="mb-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+            <p className="text-sm text-white/60 mb-2">您已选择的模块：</p>
             <div className="flex flex-wrap gap-2">
               {selectedModules.map((module) => (
-                <Badge key={module.id} variant="secondary">
+                <span key={module.id} className="px-2 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-white/70 text-xs">
                   {module.name}
-                </Badge>
+                </span>
               ))}
             </div>
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
@@ -299,7 +297,7 @@ export function ContactForm() {
           
           <Button
             type="submit"
-            className="w-full bg-[#06b6d4] hover:bg-[#0891b2]"
+            className="w-full glow-btn text-white"
             size="lg"
             disabled={isSubmitting}
           >
@@ -313,7 +311,7 @@ export function ContactForm() {
             )}
           </Button>
         </form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }

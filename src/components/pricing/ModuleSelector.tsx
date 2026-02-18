@@ -1,11 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
-import { Badge } from '@/components/ui/badge'
 import { ChevronDown, ChevronUp, Check } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { usePricingStore } from '@/lib/store'
@@ -23,18 +21,18 @@ interface ModuleCardProps {
 function ModuleCard({ module, selected, onSelect, disabled }: ModuleCardProps) {
   const [expanded, setExpanded] = useState(false)
   const features = (module.features as string[]) || []
-  
+
   return (
-    <Card 
-      className={`border-2 transition-all cursor-pointer ${
-        selected ? 'border-[#06b6d4] bg-[#06b6d4]/5' : 'border-transparent hover:border-gray-200'
-      } ${disabled ? 'opacity-60 cursor-not-allowed' : ''}`}
+    <div
+      className={`glass-card transition-all cursor-pointer ${
+        selected ? 'border-blue-500/50 bg-blue-500/5' : 'border-transparent hover:border-white/10'
+      } ${disabled ? 'opacity-60 cursor-not-allowed' : 'card-hover'}`}
       onClick={() => !disabled && onSelect()}
     >
-      <CardContent className="p-4">
+      <div className="p-4">
         <div className="flex items-start gap-4">
-          <Checkbox 
-            checked={selected} 
+          <Checkbox
+            checked={selected}
             disabled={disabled}
             className="mt-1"
           />
@@ -42,23 +40,25 @@ function ModuleCard({ module, selected, onSelect, disabled }: ModuleCardProps) {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{module.icon}</span>
-                <h3 className="font-semibold text-gray-900">{module.name}</h3>
+                <h3 className="font-semibold text-white">{module.name}</h3>
               </div>
-              <Badge variant="outline">{module.category}</Badge>
+              <span className="px-2 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] text-white/50 text-xs">
+                {module.category}
+              </span>
             </div>
-            
-            <p className="text-sm text-gray-600 mb-2">{module.description}</p>
-            
+
+            <p className="text-sm text-white/50 mb-2">{module.description}</p>
+
             <div className="flex items-center justify-between">
               <div className="flex items-baseline gap-1">
-                <span className="font-bold text-[#1e3a5f]">
+                <span className="font-bold gradient-text">
                   ¥{module.price_min?.toLocaleString()} - {module.price_max?.toLocaleString()}
                 </span>
-                <span className="text-sm text-gray-500">{module.price_unit}</span>
+                <span className="text-sm text-white/40">{module.price_unit}</span>
               </div>
-              <span className="text-xs text-gray-400">{module.delivery_days}</span>
+              <span className="text-xs text-white/30">{module.delivery_days}</span>
             </div>
-            
+
             {features.length > 0 && (
               <div className="mt-3">
                 <button
@@ -66,18 +66,18 @@ function ModuleCard({ module, selected, onSelect, disabled }: ModuleCardProps) {
                     e.stopPropagation()
                     setExpanded(!expanded)
                   }}
-                  className="flex items-center gap-1 text-sm text-[#06b6d4] hover:underline"
+                  className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 transition-colors"
                 >
                   {expanded ? '收起' : '查看详情'}
                   {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </button>
-                
+
                 {expanded && (
                   <div className="mt-3 space-y-2">
                     {features.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#06b6d4] mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-600">{feature}</span>
+                        <Check className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-white/60">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -86,8 +86,8 @@ function ModuleCard({ module, selected, onSelect, disabled }: ModuleCardProps) {
             )}
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
 
@@ -171,7 +171,7 @@ export function ModuleSelector() {
     return (
       <div className="space-y-4">
         {[1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="h-32 bg-gray-200 rounded-lg animate-pulse" />
+          <div key={i} className="h-32 bg-white/[0.02] rounded-2xl animate-pulse border border-white/[0.06]" />
         ))}
       </div>
     )
@@ -181,7 +181,7 @@ export function ModuleSelector() {
     <div className="space-y-8">
       {baseModule && (
         <div>
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-white">
             <span>🧱</span>
             {pricingContent['模块选择器']['基础模块标题']}
           </h3>
@@ -195,7 +195,7 @@ export function ModuleSelector() {
       )}
 
       <div>
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-white">
           <span>🔌</span>
           {pricingContent['模块选择器']['增值模块标题']}
         </h3>
@@ -210,44 +210,46 @@ export function ModuleSelector() {
           ))}
         </div>
       </div>
-      
+
       <div>
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-white">
           <span>🔄</span>
           {pricingContent['模块选择器']['持续服务标题']}
         </h3>
-        <RadioGroup 
-          value={selectedSubscription?.id} 
+        <RadioGroup
+          value={selectedSubscription?.id}
           onValueChange={handleSubscriptionSelect}
           className="space-y-4"
         >
           {subscriptionModules.map((mod) => (
-            <Card 
+            <div
               key={mod.id}
-              className={`border-2 transition-all cursor-pointer ${
-                selectedSubscription?.id === mod.id 
-                  ? 'border-[#06b6d4] bg-[#06b6d4]/5' 
-                  : 'border-transparent hover:border-gray-200'
-              }`}
+              className={`glass-card transition-all cursor-pointer ${
+                selectedSubscription?.id === mod.id
+                  ? 'border-blue-500/50 bg-blue-500/5'
+                  : 'border-transparent hover:border-white/10'
+              } card-hover`}
             >
-              <CardContent className="p-4">
+              <div className="p-4">
                 <div className="flex items-start gap-4">
                   <RadioGroupItem value={mod.id} id={mod.id} className="mt-1" />
                   <div className="flex-1">
-                    <Label htmlFor={mod.id} className="flex items-center gap-2 cursor-pointer">
+                    <Label htmlFor={mod.id} className="flex items-center gap-2 cursor-pointer text-white">
                       <span className="text-2xl">{mod.icon}</span>
                       <span className="font-semibold">{mod.name}</span>
-                      <Badge variant="outline">{mod.category}</Badge>
+                      <span className="px-2 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-white/50 text-xs">
+                        {mod.category}
+                      </span>
                     </Label>
-                    <p className="text-sm text-gray-600 mt-1 ml-8">{mod.description}</p>
+                    <p className="text-sm text-white/50 mt-1 ml-8">{mod.description}</p>
                     <div className="flex items-baseline gap-1 mt-2 ml-8">
-                      <span className="font-bold text-[#1e3a5f]">¥{mod.price_min?.toLocaleString()}</span>
-                      <span className="text-sm text-gray-500">{mod.price_unit}</span>
+                      <span className="font-bold gradient-text">¥{mod.price_min?.toLocaleString()}</span>
+                      <span className="text-sm text-white/40">{mod.price_unit}</span>
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </RadioGroup>
       </div>

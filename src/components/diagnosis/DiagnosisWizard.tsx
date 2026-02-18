@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -183,34 +182,34 @@ export function DiagnosisWizard() {
 
   if (showContact) {
     return (
-      <Card className="border-0 shadow-xl max-w-md mx-auto">
-        <CardContent className="p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">获取完整方案</h3>
-          <p className="text-gray-600 mb-6">留下您的联系方式，我们将发送详细方案</p>
-          
+      <div className="glass-card max-w-md mx-auto">
+        <div className="p-8">
+          <h3 className="text-2xl font-bold text-white mb-2">获取完整方案</h3>
+          <p className="text-white/50 mb-6">留下您的联系方式，我们将发送详细方案</p>
+
           <div className="space-y-4">
             <div>
-              <Label>联系人姓名</Label>
+              <Label className="text-white/70">联系人姓名</Label>
               <input
                 type="text"
-                className="w-full mt-1 px-4 py-2 border rounded-lg"
+                className="w-full mt-1 px-4 py-2 rounded-lg bg-white/[0.05] border border-white/[0.1] text-white placeholder:text-white/30 focus:outline-none focus:border-blue-500/50"
                 placeholder="请输入姓名"
                 value={contactInfo.name}
                 onChange={(e) => setContactInfo({ ...contactInfo, name: e.target.value })}
               />
             </div>
             <div>
-              <Label>手机号或邮箱</Label>
+              <Label className="text-white/70">手机号或邮箱</Label>
               <input
                 type="text"
-                className="w-full mt-1 px-4 py-2 border rounded-lg"
+                className="w-full mt-1 px-4 py-2 rounded-lg bg-white/[0.05] border border-white/[0.1] text-white placeholder:text-white/30 focus:outline-none focus:border-blue-500/50"
                 placeholder="请输入手机号或邮箱"
                 value={contactInfo.contact}
                 onChange={(e) => setContactInfo({ ...contactInfo, contact: e.target.value })}
               />
             </div>
             <Button
-              className="w-full bg-[#06b6d4] hover:bg-[#0891b2]"
+              className="w-full glow-btn text-white"
               onClick={handleContactSubmit}
               disabled={isSubmitting}
             >
@@ -224,81 +223,83 @@ export function DiagnosisWizard() {
               )}
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     )
   }
 
   if (showResult) {
     const result = getRecommendations()
-    
+
     return (
-      <Card className="border-0 shadow-xl max-w-2xl mx-auto">
-        <CardContent className="p-8">
+      <div className="glass-card max-w-2xl mx-auto">
+        <div className="p-8">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Check className="w-8 h-8 text-green-600" />
+            <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+              <Check className="w-8 h-8 text-green-400" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">您的 AI 机会清单</h3>
-            <p className="text-gray-600">基于您的回答，我们为您推荐以下方案</p>
+            <h3 className="text-2xl font-bold text-white mb-2">您的 AI 机会清单</h3>
+            <p className="text-white/50">基于您的回答，我们为您推荐以下方案</p>
           </div>
 
           <div className="space-y-6 mb-8">
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h4 className="font-semibold text-gray-900 mb-4">推荐模块组合</h4>
+            <div className="glass-card rounded-xl p-6">
+              <h4 className="font-semibold text-white mb-4">推荐模块组合</h4>
               <div className="flex flex-wrap gap-2">
                 {result.recommendedModules.map((moduleId) => (
-                  <div key={moduleId} className="bg-white px-4 py-2 rounded-lg shadow-sm">
-                    <span className="font-medium text-gray-900">{moduleId}</span>
+                  <div key={moduleId} className="bg-white/[0.05] px-4 py-2 rounded-lg border border-white/[0.1]">
+                    <span className="font-medium text-white/80">{moduleId}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#1e3a5f] rounded-xl p-6 text-white">
-                <p className="text-gray-300 mb-1">预估价格</p>
-                <p className="text-2xl font-bold">
+              <div className="glass-card rounded-xl p-6 relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600" />
+                <p className="text-white/50 mb-1">预估价格</p>
+                <p className="text-2xl font-bold gradient-text">
                   ¥{result.priceMin.toLocaleString()} - {result.priceMax.toLocaleString()}
                 </p>
               </div>
-              <div className="bg-[#06b6d4] rounded-xl p-6 text-white">
-                <p className="text-gray-100 mb-1">预估周期</p>
-                <p className="text-2xl font-bold">{result.days}</p>
+              <div className="glass-card rounded-xl p-6 relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-pink-400" />
+                <p className="text-white/50 mb-1">预估周期</p>
+                <p className="text-2xl font-bold text-white">{result.days}</p>
               </div>
             </div>
           </div>
 
           <Button
-            className="w-full bg-[#06b6d4] hover:bg-[#0891b2]"
+            className="w-full glow-btn text-white group"
             size="lg"
             onClick={() => setShowContact(true)}
           >
             获取完整方案
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     )
   }
 
   return (
-    <Card className="border-0 shadow-xl max-w-2xl mx-auto">
-      <CardContent className="p-8">
+    <div className="glass-card max-w-2xl mx-auto">
+      <div className="p-8">
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-white/40">
               步骤 {currentStep + 1} / {steps.length}
             </span>
-            <span className="text-sm font-medium text-[#06b6d4]">
+            <span className="text-sm font-medium text-blue-400">
               {step.title}
             </span>
           </div>
-          <Progress value={progress} className="h-2" />
+          <Progress value={progress} className="h-2 bg-white/[0.1]" />
         </div>
 
         <div className="mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">{step.title}</h3>
+          <h3 className="text-2xl font-bold text-white mb-6">{step.title}</h3>
 
           {step.type === 'single' ? (
             <RadioGroup
@@ -309,14 +310,14 @@ export function DiagnosisWizard() {
               {step.options.map((option) => (
                 <div
                   key={option}
-                  className={`flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                  className={`flex items-center space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
                     answers[step.id] === option
-                      ? 'border-[#06b6d4] bg-[#06b6d4]/5'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-blue-500/50 bg-blue-500/5'
+                      : 'border-white/[0.06] hover:border-white/[0.15]'
                   }`}
                 >
-                  <RadioGroupItem value={option} id={option} />
-                  <Label htmlFor={option} className="flex-1 cursor-pointer font-normal">
+                  <RadioGroupItem value={option} id={option} className="border-white/30" />
+                  <Label htmlFor={option} className="flex-1 cursor-pointer font-normal text-white">
                     {option}
                   </Label>
                 </div>
@@ -327,10 +328,10 @@ export function DiagnosisWizard() {
               {step.options.map((option) => (
                 <div
                   key={option}
-                  className={`flex items-center space-x-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                  className={`flex items-center space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${
                     (answers[step.id] as string[])?.includes(option)
-                      ? 'border-[#06b6d4] bg-[#06b6d4]/5'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-blue-500/50 bg-blue-500/5'
+                      : 'border-white/[0.06] hover:border-white/[0.15]'
                   }`}
                   onClick={() => handleMultipleSelect(option)}
                 >
@@ -338,7 +339,7 @@ export function DiagnosisWizard() {
                     checked={(answers[step.id] as string[])?.includes(option)}
                     onCheckedChange={() => handleMultipleSelect(option)}
                   />
-                  <Label className="flex-1 cursor-pointer font-normal">{option}</Label>
+                  <Label className="flex-1 cursor-pointer font-normal text-white">{option}</Label>
                 </div>
               ))}
             </div>
@@ -350,7 +351,7 @@ export function DiagnosisWizard() {
             <Button
               variant="outline"
               onClick={handlePrev}
-              className="flex-1"
+              className="flex-1 secondary-btn text-white/70 hover:text-white border-white/[0.1]"
             >
               <ArrowLeft className="mr-2 w-4 h-4" />
               上一步
@@ -358,13 +359,13 @@ export function DiagnosisWizard() {
           )}
           <Button
             onClick={handleNext}
-            className="flex-1 bg-[#06b6d4] hover:bg-[#0891b2]"
+            className="flex-1 glow-btn text-white group"
           >
             {currentStep === steps.length - 1 ? '查看结果' : '下一步'}
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
