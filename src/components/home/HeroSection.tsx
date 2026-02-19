@@ -36,17 +36,17 @@ export function HeroSection() {
           transform: `translate(${mousePosition.x}px, ${mousePosition.y}px) scale(1.1)`,
         }}
       >
-        {/* Deep Gradient Base */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050508] via-[#080810] to-[#050508]" />
+        {/* Transparent Gradient Base - allow Game of Life to show through */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050508]/30 via-[#080810]/20 to-[#050508]/30" />
         
-        {/* Large Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[150px] float" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-pink-500/20 rounded-full blur-[150px] float-delayed" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[200px]" />
+        {/* Large Gradient Orbs - reduced opacity */}
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px] float" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-[150px] float-delayed" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[200px]" />
       </div>
       
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 tech-grid opacity-40" />
+      {/* Grid Overlay - reduced opacity */}
+      <div className="absolute inset-0 tech-grid opacity-20" />
       
       <div className="container max-w-7xl mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
