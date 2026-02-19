@@ -200,6 +200,268 @@ export interface Database {
           created_at?: string
         }
       }
+      workspaces: {
+        Row: {
+          id: string
+          name: string
+          owner_id: string
+          plan: string
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          owner_id: string
+          plan?: string
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          owner_id?: string
+          plan?: string
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      api_keys: {
+        Row: {
+          id: string
+          workspace_id: string
+          name: string
+          key_hash: string
+          prefix: string
+          scopes: string[]
+          is_active: boolean
+          last_used_at: string | null
+          created_at: string
+          expires_at: string | null
+          allowed_ips: string[] | null
+          rate_limit_rpm: number
+        }
+        Insert: {
+          id?: string
+          workspace_id: string
+          name: string
+          key_hash: string
+          prefix: string
+          scopes?: string[]
+          is_active?: boolean
+          last_used_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+          allowed_ips?: string[] | null
+          rate_limit_rpm?: number
+        }
+        Update: {
+          id?: string
+          workspace_id?: string
+          name?: string
+          key_hash?: string
+          prefix?: string
+          scopes?: string[]
+          is_active?: boolean
+          last_used_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+          allowed_ips?: string[] | null
+          rate_limit_rpm?: number
+        }
+      }
+      mcp_tokens: {
+        Row: {
+          id: string
+          workspace_id: string
+          name: string
+          token_hash: string
+          prefix: string
+          is_active: boolean
+          last_used_at: string | null
+          created_at: string
+          expires_at: string | null
+        }
+        Insert: {
+          id?: string
+          workspace_id: string
+          name: string
+          token_hash: string
+          prefix: string
+          is_active?: boolean
+          last_used_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+        }
+        Update: {
+          id?: string
+          workspace_id?: string
+          name?: string
+          token_hash?: string
+          prefix?: string
+          is_active?: boolean
+          last_used_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+        }
+      }
+      agents: {
+        Row: {
+          id: string
+          workspace_id: string
+          name: string
+          description: string | null
+          model: string
+          status: string
+          is_active: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          workspace_id: string
+          name: string
+          description?: string | null
+          model?: string
+          status?: string
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          workspace_id?: string
+          name?: string
+          description?: string | null
+          model?: string
+          status?: string
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      workflows: {
+        Row: {
+          id: string
+          workspace_id: string
+          name: string
+          description: string | null
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          workspace_id: string
+          name: string
+          description?: string | null
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          workspace_id?: string
+          name?: string
+          description?: string | null
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      workflow_runs: {
+        Row: {
+          id: string
+          workflow_id: string
+          workspace_id: string
+          status: string
+          trigger_type: string
+          input_data: Json
+          output_data: Json | null
+          error_message: string | null
+          started_at: string | null
+          completed_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          workflow_id: string
+          workspace_id: string
+          status?: string
+          trigger_type?: string
+          input_data?: Json
+          output_data?: Json | null
+          error_message?: string | null
+          started_at?: string | null
+          completed_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          workflow_id?: string
+          workspace_id?: string
+          status?: string
+          trigger_type?: string
+          input_data?: Json
+          output_data?: Json | null
+          error_message?: string | null
+          started_at?: string | null
+          completed_at?: string | null
+          created_at?: string
+        }
+      }
+      chat_sessions: {
+        Row: {
+          id: string
+          workspace_id: string
+          agent_id: string
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          workspace_id: string
+          agent_id: string
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          workspace_id?: string
+          agent_id?: string
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      chat_messages: {
+        Row: {
+          id: string
+          session_id: string
+          role: string
+          content: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          session_id: string
+          role: string
+          content: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          session_id?: string
+          role?: string
+          content?: string
+          created_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
