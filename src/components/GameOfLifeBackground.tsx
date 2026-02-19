@@ -7,13 +7,13 @@ export default function GameOfLifeBackground() {
   const animationRef = useRef<number>();
   const gridRef = useRef<number[][]>([]);
 
-  const CELL_SIZE = 8;
-  const CELL_COLOR = 'rgba(6, 182, 212, 0.6)';
-  const BG_COLOR = '#030305';
+  const CELL_SIZE = 4;
+  const CELL_COLOR = 'rgba(255, 255, 255, 0.8)';
+  const BG_COLOR = '#0a0a0a';
 
   const initializeGrid = useCallback((cols: number, rows: number) => {
-    return Array(cols).fill(null).map(() => 
-      Array(rows).fill(null).map(() => Math.random() > 0.85 ? 1 : 0)
+    return Array(cols).fill(null).map(() =>
+      Array(rows).fill(null).map(() => Math.random() > 0.92 ? 1 : 0)
     );
   }, []);
 
@@ -73,25 +73,22 @@ export default function GameOfLifeBackground() {
       ctx.fillStyle = BG_COLOR;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      if (frameCount % 3 === 0) {
+      if (frameCount % 5 === 0) {
         gridRef.current = updateGrid(gridRef.current, cols, rows);
       }
       frameCount++;
 
       ctx.fillStyle = CELL_COLOR;
-      
+
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           if (gridRef.current[i][j]) {
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = CELL_COLOR;
             ctx.fillRect(
-              i * CELL_SIZE, 
-              j * CELL_SIZE, 
-              CELL_SIZE - 1, 
-              CELL_SIZE - 1
+              i * CELL_SIZE,
+              j * CELL_SIZE,
+              CELL_SIZE,
+              CELL_SIZE
             );
-            ctx.shadowBlur = 0;
           }
         }
       }
@@ -113,7 +110,7 @@ export default function GameOfLifeBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 -z-10 pointer-events-none"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.15 }}
     />
   );
 }
