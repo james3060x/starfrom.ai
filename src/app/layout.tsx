@@ -3,7 +3,7 @@ import { Inter } from "next/font/google"
 import { Toaster } from "@/components/ui/sonner"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
-import GameOfLifeBackground from "@/components/GameOfLifeBackground"
+import CodeMatrixBackground from "@/components/CodeMatrixBackground"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className="dark">
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-[#030305] text-white`}>
-        <GameOfLifeBackground />
+        <CodeMatrixBackground />
         
         <div 
           className="fixed inset-0 z-[1] pointer-events-none"
