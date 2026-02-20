@@ -83,6 +83,7 @@ export default function ChatPage() {
     }
 
     fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agentId, router, supabase])
 
   const loadMessages = async (conversationId: string) => {

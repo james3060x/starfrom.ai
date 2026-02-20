@@ -60,6 +60,7 @@ export async function POST(request: NextRequest) {
       .select('id', { count: 'exact' })
       .eq('user_id', user_id)
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const agentLimit = (soloUser as any)?.agent_limit || 1
     if ((existingAgents?.length || 0) >= agentLimit) {
       return NextResponse.json(
@@ -68,6 +69,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: agent, error } = await supabase
       .from('user_agents')
       .insert({
