@@ -13,7 +13,6 @@ const navItems = [
   { href: '/services', label: '服务' },
   { href: '/pricing', label: '定价' },
   { href: '/cases', label: '案例' },
-  { href: '/agentos', label: 'AgentOS' },
   { href: '/contact', label: '联系' },
 ]
 

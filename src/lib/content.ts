@@ -9,11 +9,11 @@ export const siteContent = {
   "网站基础信息": {
     "网站名称": "StarFrom.AI",
     "副标题": "AI Agent 快速定制服务",
-    "标语": "为超级个体/企业打造专属 AI Agent",
+    "标语": "AgentOS企业级多Agent协作平台",
     "描述": "标准基座 + 可插拔模块，开箱即用，降本增效，持续升级"
   },
   "SEO 信息": {
-    "首页标题": "StarFrom AI - 为超级个体/企业打造专属 AI Agent",
+    "首页标题": "StarFrom AI - AgentOS企业级多Agent协作平台",
     "首页描述": "标准基座 + 可插拔模块，开箱即用，降本增效，持续升级。智能客服、知识库问答、流程自动化，让 AI 技术触手可及。",
     "服务页标题": "服务详情 - StarFrom AI",
     "服务页描述": "了解 StarFrom AI 的模块化服务，包括基础模块、9大可插拔模块和3档持续服务，快速部署企业级 AI 解决方案。",
@@ -33,9 +33,9 @@ export const navContent = {
 export const homeContent = {
   "Hero 区域（首屏）": {
     "标签": "AI 智能体定制服务",
-    "版本号": "v2.0",
-    "主标题": "为超级个体/企业",
-    "主标题高亮": "打造专属 AI Agent",
+    "版本号": "v3.0",
+    "主标题": "AgentOS",
+    "主标题高亮": "企业级多Agent协作平台",
     "副标题": "标准基座 + 可插拔模块，开箱即用，降本增效，持续升级",
     "副标题高亮1": "开箱即用",
     "副标题高亮2": "降本增效",
@@ -224,7 +224,7 @@ export const diagnosisContent = {
 export const footerContent = {
   "品牌区域": {
     "品牌名": "StarFrom.AI",
-    "描述": "为中小企业打造专属 AI 智能体，模板化交付，3 天上线，让 AI 技术触手可及。"
+    "描述": "AgentOS企业级多Agent协作平台，模板化交付，3 天上线，让 AI 技术触手可及。"
   },
   "底部信息": {
     "版权": "© 2026 StarFrom AI. All rights reserved.",

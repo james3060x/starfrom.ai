@@ -9,12 +9,12 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "StarFrom AI - 为中小企业打造专属 AI 智能体",
-  description: "StarFrom AI 提供模块化 AI 服务，帮助企业快速部署智能客服、知识库问答、流程自动化等 AI 解决方案。3 天交付，仅需市场价 30%。",
-  keywords: "AI, 智能体, 客服机器人, 知识库, RAG, 中小企业, SaaS",
+  title: "StarFrom AI - AgentOS企业级多Agent协作平台",
+  description: "StarFrom AI 提供模块化 AI 服务，帮助企业快速部署智能客服，知识库问答、流程自动化等 AI 解决方案。3 天交付，仅需市场价 30%。",
+  keywords: "AI, 智能体, 客服机器人, 知识库, RAG, 企业级, SaaS, AgentOS, 多Agent",
   authors: [{ name: "StarFrom AI" }],
   openGraph: {
-    title: "StarFrom AI - 为中小企业打造专属 AI 智能体",
+    title: "StarFrom AI - AgentOS企业级多Agent协作平台",
     description: "模块化 AI 服务，3 天交付，仅需市场价 30%",
     type: "website",
     locale: "zh_CN",
