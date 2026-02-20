@@ -35,7 +35,8 @@ export async function POST(request: NextRequest) {
       .order('created_at', { ascending: true })
       .limit(10)
 
-    const conversationHistory = messages?.map(m => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const conversationHistory = messages?.map((m: any) => ({
       role: m.role,
       content: m.content
     })) || []
