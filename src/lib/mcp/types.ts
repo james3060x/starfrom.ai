@@ -134,6 +134,78 @@ export const AGENTOS_TOOLS: McpTool[] = [
       },
       required: ['session_id']
     }
+  },
+  {
+    name: 'create_session',
+    description: '创建一个新的对话会话',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        agent_id: {
+          type: 'string',
+          description: 'Agent ID'
+        },
+        title: {
+          type: 'string',
+          description: '会话标题（可选）'
+        }
+      },
+      required: ['agent_id']
+    }
+  },
+  {
+    name: 'list_sessions',
+    description: '列出Agent的所有会话',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        agent_id: {
+          type: 'string',
+          description: 'Agent ID'
+        },
+        limit: {
+          type: 'number',
+          description: '返回会话数量（默认20）'
+        }
+      },
+      required: ['agent_id']
+    }
+  },
+  {
+    name: 'search_knowledge_base',
+    description: '直接搜索知识库内容',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        knowledge_base_id: {
+          type: 'string',
+          description: '知识库ID'
+        },
+        query: {
+          type: 'string',
+          description: '搜索查询'
+        },
+        limit: {
+          type: 'number',
+          description: '返回结果数量（默认10）'
+        }
+      },
+      required: ['knowledge_base_id', 'query']
+    }
+  },
+  {
+    name: 'list_knowledge_bases',
+    description: '列出工作空间中的所有知识库',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        workspace_id: {
+          type: 'string',
+          description: '工作空间ID'
+        }
+      },
+      required: ['workspace_id']
+    }
   }
 ];
 

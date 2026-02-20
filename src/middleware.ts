@@ -67,6 +67,20 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/admin', request.url))
   }
 
+  if (request.nextUrl.pathname.startsWith('/dashboard') && !request.nextUrl.pathname.startsWith('/dashboard/')) {
+    if (!session) {
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+  }
+
+  if (request.nextUrl.pathname.startsWith('/dashboard/') && 
+      request.nextUrl.pathname !== '/dashboard' &&
+      !request.nextUrl.pathname.startsWith('/dashboard/auth')) {
+    if (!session) {
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+  }
+
   return response
 }
 

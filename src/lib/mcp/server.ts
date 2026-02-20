@@ -287,6 +287,106 @@ export async function executeMcpTool(
         };
       }
 
+      case 'create_session': {
+        const { agent_id, title } = args as { agent_id: string; title?: string };
+
+        const { data: session, error } = await supabase
+          .from('user_conversations')
+          .insert({
+            agent_id,
+            user_id: workspaceId,
+            title: title || 'New Conversation'
+          })
+          .select('id, title, created_at')
+          .single();
+
+        if (error || !session) {
+          return {
+            content: [{ type: 'text', text: `Failed to create session: ${error?.message}` }],
+            isError: true
+          };
+        }
+
+        return {
+          content: [{
+            type: 'text',
+            text: `会话创建成功！\n\n会话ID: ${session.id}\n标题: ${session.title}\n创建时间: ${session.created_at}`
+          }]
+        };
+      }
+
+      case 'list_sessions': {
+        const { agent_id, limit = 20 } = args as { agent_id: string; limit?: number };
+
+        const { data: sessions } = await supabase
+          .from('user_conversations')
+          .select('id, title, message_count, last_message_at, created_at')
+          .eq('agent_id', agent_id)
+          .order('last_message_at', { ascending: false })
+          .limit(limit);
+
+        if (!sessions || sessions.length === 0) {
+          return {
+            content: [{ type: 'text', text: 'No sessions found for this agent.' }]
+          };
+        }
+
+        const sessionList = sessions.map(s => 
+          `- ${s.title} (ID: ${s.id})\n  消息数: ${s.message_count}\n  最后活动: ${s.last_message_at || 'N/A'}`
+        ).join('\n\n');
+
+        return {
+          content: [{ type: 'text', text: `会话列表:\n\n${sessionList}` }]
+        };
+      }
+
+      case 'search_knowledge_base': {
+        const { knowledge_base_id, query, limit = 10 } = args as { knowledge_base_id: string; query: string; limit?: number };
+
+        const { data: chunks, error } = await supabase
+          .from('knowledge_chunks')
+          .select('id, content, metadata')
+          .eq('knowledge_base_id', knowledge_base_id)
+          .ilike('content', `%${query}%`)
+          .limit(limit);
+
+        if (error || !chunks || chunks.length === 0) {
+          return {
+            content: [{ type: 'text', text: `No results found for query: "${query}"` }]
+          };
+        }
+
+        const results = chunks.map((c, i) => 
+          `[${i + 1}] ${c.content.substring(0, 200)}...`
+        ).join('\n\n');
+
+        return {
+          content: [{ type: 'text', text: `找到 ${chunks.length} 条结果:\n\n${results}` }]
+        };
+      }
+
+      case 'list_knowledge_bases': {
+        const { data: knowledgeBases } = await supabase
+          .from('knowledge_bases')
+          .select('id, name, description, total_files, created_at')
+          .eq('user_id', workspaceId)
+          .order('created_at', { ascending: false });
+
+        if (!knowledgeBases || knowledgeBases.length === 0) {
+          return {
+            content: [{ type: 'text', text: 'No knowledge bases found in this workspace.' }]
+          };
+        }
+
+        const kbList = knowledgeBases.map(kb => 
+          `- ${kb.name} (ID: ${kb.id})\n  文件数: ${kb.total_files || 0}\n  描述: ${kb.description || 'N/A'}`
+        ).join('\n\n');
+
+        return {
+          content: [{ type: 'text', text: `知识库列表:\n\n${kbList}` }]
+        };
+      }
+
       default:
         return {
           content: [{ type: 'text', text: `Unknown tool: ${toolName}` }],

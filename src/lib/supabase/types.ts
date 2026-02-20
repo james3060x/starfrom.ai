@@ -462,6 +462,200 @@ export interface Database {
           created_at?: string
         }
       }
+      solo_users: {
+        Row: {
+          id: string
+          user_id: string
+          plan_type: string
+          plan_status: string
+          agent_limit: number
+          storage_limit_gb: number
+          api_calls_limit: number
+          trial_ends_at: string | null
+          subscription_id: string | null
+          subscription_expires_at: string | null
+          total_agents: number
+          total_conversations: number
+          total_api_calls: number
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          plan_type?: string
+          plan_status?: string
+          agent_limit?: number
+          storage_limit_gb?: number
+          api_calls_limit?: number
+          trial_ends_at?: string | null
+          subscription_id?: string | null
+          subscription_expires_at?: string | null
+          total_agents?: number
+          total_conversations?: number
+          total_api_calls?: number
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          plan_type?: string
+          plan_status?: string
+          agent_limit?: number
+          storage_limit_gb?: number
+          api_calls_limit?: number
+          trial_ends_at?: string | null
+          subscription_id?: string | null
+          subscription_expires_at?: string | null
+          total_agents?: number
+          total_conversations?: number
+          total_api_calls?: number
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      user_agents: {
+        Row: {
+          id: string
+          user_id: string
+          name: string
+          description: string | null
+          icon: string
+          is_active: boolean
+          model: string
+          temperature: number
+          max_tokens: number
+          system_prompt: string
+          knowledge_base_id: string | null
+          enable_web_search: boolean
+          enable_function_calling: boolean
+          stop_sequences: string[] | null
+          total_conversations: number
+          total_messages: number
+          last_used_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          name: string
+          description?: string | null
+          icon?: string
+          is_active?: boolean
+          model?: string
+          temperature?: number
+          max_tokens?: number
+          system_prompt: string
+          knowledge_base_id?: string | null
+          enable_web_search?: boolean
+          enable_function_calling?: boolean
+          stop_sequences?: string[] | null
+          total_conversations?: number
+          total_messages?: number
+          last_used_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          name?: string
+          description?: string | null
+          icon?: string
+          is_active?: boolean
+          model?: string
+          temperature?: number
+          max_tokens?: number
+          system_prompt?: string
+          knowledge_base_id?: string | null
+          enable_web_search?: boolean
+          enable_function_calling?: boolean
+          stop_sequences?: string[] | null
+          total_conversations?: number
+          total_messages?: number
+          last_used_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      user_conversations: {
+        Row: {
+          id: string
+          agent_id: string
+          user_id: string
+          title: string | null
+          message_count: number
+          last_message_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          agent_id: string
+          user_id: string
+          title?: string | null
+          message_count?: number
+          last_message_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          agent_id?: string
+          user_id?: string
+          title?: string | null
+          message_count?: number
+          last_message_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      knowledge_bases: {
+        Row: {
+          id: string
+          user_id: string
+          name: string
+          description: string | null
+          chunk_size: number
+          chunk_overlap: number
+          embedding_model: string
+          total_files: number
+          total_chunks: number
+          total_size_bytes: number
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          name: string
+          description?: string | null
+          chunk_size?: number
+          chunk_overlap?: number
+          embedding_model?: string
+          total_files?: number
+          total_chunks?: number
+          total_size_bytes?: number
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          name?: string
+          description?: string | null
+          chunk_size?: number
+          chunk_overlap?: number
+          embedding_model?: string
+          total_files?: number
+          total_chunks?: number
+          total_size_bytes?: number
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
