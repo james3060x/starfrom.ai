@@ -28,7 +28,13 @@ export default function ChatPage() {
   const supabase = createClient()
   const agentId = params.agentId as string
 
-  const [agent, setAgent] = useState<any>(null)
+  const [agent, setAgent] = useState<{
+    id: string
+    name: string
+    description: string | null
+    icon: string
+    model: string
+  } | null>(null)
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null)
   const [messages, setMessages] = useState<Message[]>([])

@@ -28,7 +28,7 @@ export default function AgentsPage() {
   const [agents, setAgents] = useState<Agent[]>([])
   const [loading, setLoading] = useState(true)
   const [agentLimit, setAgentLimit] = useState(1)
-  const [currentUser, setCurrentUser] = useState<any>(null)
+  const [currentUser, setCurrentUser] = useState<{ email?: string } | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {

@@ -18,17 +18,31 @@ interface KnowledgeFile {
   created_at: string
 }
 
+interface KnowledgeBase {
+  id: string
+  name: string
+  description: string | null
+  total_files: number
+  total_chunks: number
+}
+
+interface TestResult {
+  id: string
+  content: string
+  score: number
+}
+
 export default function KnowledgeDetailPage() {
   const params = useParams()
   const router = useRouter()
   const supabase = createClient()
   const knowledgeId = params.id as string
 
-  const [knowledgeBase, setKnowledgeBase] = useState<any>(null)
+  const [knowledgeBase, setKnowledgeBase] = useState<KnowledgeBase | null>(null)
   const [files, setFiles] = useState<KnowledgeFile[]>([])
   const [loading, setLoading] = useState(true)
   const [testQuery, setTestQuery] = useState('')
-  const [testResults, setTestResults] = useState<any[]>([])
+  const [testResults, setTestResults] = useState<TestResult[]>([])
   const [testing, setTesting] = useState(false)
 
   useEffect(() => {
