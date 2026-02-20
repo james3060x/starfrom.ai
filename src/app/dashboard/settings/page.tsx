@@ -5,10 +5,8 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
-import { User, CreditCard, Key, Bell, Shield, Copy, Plus, Trash2, ExternalLink } from 'lucide-react'
+import { User, CreditCard, Key, Shield, Plus, Trash2, ExternalLink } from 'lucide-react'
 
 interface ApiKey {
   id: string
@@ -19,13 +17,23 @@ interface ApiKey {
   created_at: string
 }
 
+interface UserData {
+  email?: string
+}
+
+interface UserPlan {
+  agent_limit?: number
+  storage_limit_gb?: number
+  api_calls_limit?: number
+}
+
 export default function SettingsPage() {
   const router = useRouter()
   const supabase = createClient()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<UserData | null>(null)
   const [loading, setLoading] = useState(true)
   const [apiKeys, setApiKeys] = useState<ApiKey[]>([])
-  const [userPlan, setUserPlan] = useState<any>(null)
+  const [userPlan, setUserPlan] = useState<UserPlan | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {

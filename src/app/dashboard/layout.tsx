@@ -19,7 +19,13 @@ import {
   CreditCard
 } from 'lucide-react'
 
-const navItems = [
+interface NavItem {
+  href: string
+  label: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+const navItems: NavItem[] = [
   { href: '/dashboard', label: '总览', icon: LayoutDashboard },
   { href: '/dashboard/agents', label: 'Agents', icon: Bot },
   { href: '/dashboard/chat', label: '对话', icon: MessageSquare },
@@ -37,7 +43,7 @@ export default function DashboardLayout({
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ email?: string } | null>(null)
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
