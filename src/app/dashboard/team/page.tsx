@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
-import { Users, UserPlus, Mail, Shield, Trash2, Crown, MoreVertical } from 'lucide-react'
+import { Users, UserPlus, Shield, Trash2, Crown } from 'lucide-react'
 
 interface TeamMember {
   id: string
@@ -48,6 +48,12 @@ export default function TeamPage() {
         setCurrentUserRole('owner')
       }
 
+      const { data: teamMembers } = await supabase
+        .from('workspace_members')
+        .select('*')
+        .eq('user_id', user.id)
+      
+      setMembers(teamMembers || [])
       setLoading(false)
     }
 
@@ -64,7 +70,7 @@ export default function TeamPage() {
     try {
       toast.success(`邀请已发送到 ${inviteEmail}`)
       setInviteEmail('')
-    } catch (error) {
+    } catch {
       toast.error('邀请失败')
     } finally {
       setInviting(false)

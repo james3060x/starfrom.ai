@@ -133,9 +133,10 @@ export function FileUploader({ knowledgeBaseId, onUploadComplete }: FileUploader
 
       onUploadComplete?.()
 
-    } catch (error: any) {
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Upload failed'
       setFiles(prev => prev.map(f => 
-        f.id === fileData.id ? { ...f, status: 'error', error: error.message } : f
+        f.id === fileData.id ? { ...f, status: 'error', error: message } : f
       ))
     }
   }

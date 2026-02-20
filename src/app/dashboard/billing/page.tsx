@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Check, CreditCard, Crown, Zap, AlertCircle, ExternalLink } from 'lucide-react'
+import { Check, CreditCard, Crown, ExternalLink } from 'lucide-react'
 
 interface Plan {
   id: string
@@ -22,13 +22,31 @@ interface Plan {
   features: string[]
 }
 
+interface Subscription {
+  plan_id: string
+  plan_name: string
+  status: string
+  current_period_end: string
+  card_brand: string
+  card_last_four: string
+}
+
+interface Invoice {
+  id: string
+  invoice_number: string | null
+  created_at: string
+  status: string
+  total_cents: number
+  receipt_url: string | null
+}
+
 export default function BillingPage() {
   const router = useRouter()
   const supabase = createClient()
   const [loading, setLoading] = useState(true)
-  const [subscription, setSubscription] = useState<any>(null)
+  const [subscription, setSubscription] = useState<Subscription | null>(null)
   const [plans, setPlans] = useState<Plan[]>([])
-  const [invoices, setInvoices] = useState<any[]>([])
+  const [invoices, setInvoices] = useState<Invoice[]>([])
   const [billingInterval, setBillingInterval] = useState<'month' | 'year'>('month')
 
   useEffect(() => {
