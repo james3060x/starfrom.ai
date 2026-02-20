@@ -2,9 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { toast } from 'sonner'
 import { Upload, File, X, CheckCircle, AlertCircle } from 'lucide-react'
 
 interface FileUploaderProps {

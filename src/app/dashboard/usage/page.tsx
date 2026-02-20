@@ -3,15 +3,34 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { BarChart3, Activity, Clock, Zap, TrendingUp, Calendar } from 'lucide-react'
+
+interface UsageStats {
+  summary: {
+    totalCalls: number
+    successfulCalls: number
+    failedCalls: number
+    avgLatencyMs: number
+    totalTokens: number
+  }
+  timeline: Record<string, number>
+  byEndpoint: Record<string, number>
+  recentCalls: Array<{
+    method: string
+    endpoint: string
+    status_code: number
+    latency_ms: number
+    called_at: string
+  }>
+}
 
 export default function UsagePage() {
   const router = useRouter()
   const supabase = createClient()
   const [loading, setLoading] = useState(true)
   const [period, setPeriod] = useState('30d')
-  const [stats, setStats] = useState<any>(null)
+  const [stats, setStats] = useState<UsageStats | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -164,8 +183,8 @@ export default function UsagePage() {
         <CardContent>
           {stats?.timeline && Object.keys(stats.timeline).length > 0 ? (
             <div className="h-48 flex items-end gap-1">
-              {Object.entries(stats.timeline).map(([date, count]: [string, any]) => {
-                const maxCount = Math.max(...Object.values(stats.timeline))
+              {Object.entries(stats.timeline).map(([date, count]) => {
+                const maxCount = Math.max(...Object.values(stats.timeline).map(v => v as number))
                 const height = maxCount > 0 ? (count / maxCount) * 100 : 0
                 return (
                   <div key={date} className="flex-1 flex flex-col items-center gap-1">
@@ -196,7 +215,7 @@ export default function UsagePage() {
         <CardContent>
           {stats?.byEndpoint && Object.keys(stats.byEndpoint).length > 0 ? (
             <div className="space-y-3">
-              {Object.entries(stats.byEndpoint).map(([endpoint, count]: [string, any]) => (
+              {Object.entries(stats.byEndpoint).map(([endpoint, count]) => (
                 <div key={endpoint} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
                   <code className="text-sm text-cyan-400">{endpoint}</code>
                   <span className="text-white font-medium">{formatNumber(count)}</span>
@@ -218,7 +237,7 @@ export default function UsagePage() {
         <CardContent>
           {stats?.recentCalls && stats.recentCalls.length > 0 ? (
             <div className="space-y-2">
-              {stats.recentCalls.map((call: any, index: number) => (
+              {stats.recentCalls.map((call, index: number) => (
                 <div key={index} className="flex items-center justify-between p-3 bg-white/5 rounded-lg text-sm">
                   <div className="flex items-center gap-3">
                     <span className={`px-2 py-0.5 rounded text-xs ${
