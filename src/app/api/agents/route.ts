@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json({ agents: agents || [] })
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ agent })
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
