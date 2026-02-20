@@ -1,6 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 
+interface SoloUser {
+  agent_limit: number
+}
+
+interface UserAgent {
+  user_id: string
+  name: string
+  description: string | null
+  icon: string
+  model: string
+  temperature: number
+  max_tokens: number
+  system_prompt: string
+  is_active: boolean
+}
+
 export async function GET(request: NextRequest) {
   try {
     const supabase = createClient()
@@ -53,15 +69,15 @@ export async function POST(request: NextRequest) {
       .from('solo_users')
       .select('agent_limit')
       .eq('user_id', user_id)
-      .single()
+      .single<SoloUser>()
+
+    const agentLimit = soloUser?.agent_limit || 1
 
     const { data: existingAgents } = await supabase
       .from('user_agents')
       .select('id', { count: 'exact' })
       .eq('user_id', user_id)
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const agentLimit = (soloUser as any)?.agent_limit || 1
     if ((existingAgents?.length || 0) >= agentLimit) {
       return NextResponse.json(
         { error: 'Agent limit reached' },
@@ -82,7 +98,6 @@ export async function POST(request: NextRequest) {
         max_tokens: max_tokens || 1000,
         system_prompt,
         is_active: true,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
       .select()
       .single()
