@@ -10,7 +10,6 @@ const supabase = createClient(
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const EMBEDDING_MODEL = 'text-embedding-3-small';
-const EMBEDDING_DIMENSION = 1536;
 const DEFAULT_TOP_K = 5;
 
 async function getEmbedding(text: string): Promise<number[]> {

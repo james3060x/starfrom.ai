@@ -143,7 +143,7 @@ export default function ChatPage() {
     setIsLoading(true)
 
     try {
-      const { data: msgData, error: msgError } = await supabase
+      const { error: msgError } = await supabase
         .from('chat_messages')
         .insert({
           session_id: currentConversationId,
