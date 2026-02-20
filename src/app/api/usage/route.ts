@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    let startDate = new Date();
+    const startDate = new Date();
     switch (period) {
       case '7d':
         startDate.setDate(startDate.getDate() - 7);

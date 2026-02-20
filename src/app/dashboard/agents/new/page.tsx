@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { toast } from 'sonner'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
 const MODEL_OPTIONS = [
@@ -116,7 +116,7 @@ export default function NewAgentPage() {
         return
       }
 
-      const { data: agent, error } = await supabase
+      const { error } = await supabase
         .from('user_agents')
         .insert({
           user_id: user.id,
