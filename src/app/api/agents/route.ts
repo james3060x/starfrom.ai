@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       .select('id', { count: 'exact' })
       .eq('user_id', user_id)
 
-    const agentLimit = soloUser?.agent_limit || 1
+    const agentLimit = (soloUser as any)?.agent_limit || 1
     if ((existingAgents?.length || 0) >= agentLimit) {
       return NextResponse.json(
         { error: 'Agent limit reached' },
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
         max_tokens: max_tokens || 1000,
         system_prompt,
         is_active: true,
-      })
+      } as any)
       .select()
       .single()
 
