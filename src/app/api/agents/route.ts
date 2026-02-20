@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
         max_tokens: max_tokens || 1000,
         system_prompt,
         is_active: true,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
       .select()
       .single()
