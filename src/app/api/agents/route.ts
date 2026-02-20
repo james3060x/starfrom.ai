@@ -1,22 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 
-interface SoloUser {
-  agent_limit: number
-}
-
-interface UserAgent {
-  user_id: string
-  name: string
-  description: string | null
-  icon: string
-  model: string
-  temperature: number
-  max_tokens: number
-  system_prompt: string
-  is_active: boolean
-}
-
 export async function GET(request: NextRequest) {
   try {
     const supabase = createClient()
@@ -62,26 +46,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
-      )
-    }
-
-    const { data: soloUser } = await supabase
-      .from('solo_users')
-      .select('agent_limit')
-      .eq('user_id', user_id)
-      .single<SoloUser>()
-
-    const agentLimit = soloUser?.agent_limit || 1
-
-    const { data: existingAgents } = await supabase
-      .from('user_agents')
-      .select('id', { count: 'exact' })
-      .eq('user_id', user_id)
-
-    if ((existingAgents?.length || 0) >= agentLimit) {
-      return NextResponse.json(
-        { error: 'Agent limit reached' },
-        { status: 403 }
       )
     }
 
