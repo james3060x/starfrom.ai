@@ -146,7 +146,7 @@ export default function NewAgentPage() {
 
       toast.success('Agent 创建成功！')
       router.push('/dashboard/agents')
-    } catch (error) {
+    } catch {
       toast.error('创建失败，请重试')
     } finally {
       setLoading(false)

@@ -67,7 +67,7 @@ export default function SignupPage() {
         toast.success('注册成功！请检查邮箱验证链接')
         router.push('/auth/login')
       }
-    } catch (error) {
+    } catch {
       toast.error('注册失败，请重试')
     } finally {
       setLoading(false)

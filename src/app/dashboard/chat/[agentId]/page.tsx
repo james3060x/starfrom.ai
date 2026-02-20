@@ -189,7 +189,7 @@ export default function ChatPage() {
         content: assistantContent, 
         created_at: new Date().toISOString() 
       }])
-    } catch (error) {
+    } catch {
       toast.error('发送失败，请重试')
     } finally {
       setIsLoading(false)

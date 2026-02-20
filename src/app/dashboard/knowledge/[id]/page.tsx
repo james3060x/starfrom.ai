@@ -110,7 +110,7 @@ export default function KnowledgeDetailPage() {
       } else {
         setTestResults([])
       }
-    } catch (error) {
+    } catch {
       toast.error('搜索失败')
     } finally {
       setTesting(false)

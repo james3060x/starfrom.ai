@@ -93,7 +93,7 @@ export default function NewKnowledgePage() {
 
       toast.success('知识库创建成功！')
       router.push(`/dashboard/knowledge/${kb.id}`)
-    } catch (error) {
+    } catch {
       toast.error('创建失败，请重试')
     } finally {
       setLoading(false)
