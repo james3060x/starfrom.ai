@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
-import { ArrowLeft, BookOpen, Sparkles } from 'lucide-react'
+import { ArrowLeft, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 
 const TEMPLATE_KBS = [

@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { FileUploader } from '@/components/knowledge/FileUploader'
 import { toast } from 'sonner'
-import { ArrowLeft, BookOpen, FileText, Trash2, RefreshCw, Search, Loader2 } from 'lucide-react'
+import { ArrowLeft, FileText, Trash2, Search, Loader2 } from 'lucide-react'
 
 interface KnowledgeFile {
   id: string

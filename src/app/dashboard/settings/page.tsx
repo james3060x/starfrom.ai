@@ -124,11 +124,6 @@ export default function SettingsPage() {
     toast.success('API Key 已删除')
   }
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-    toast.success('已复制到剪贴板')
-  }
-
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
