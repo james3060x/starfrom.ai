@@ -6,9 +6,8 @@ import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
 import { toast } from 'sonner'
-import { Send, Bot, User, ArrowLeft, Settings, Copy, RefreshCw, Trash2, Plus, MessageSquare } from 'lucide-react'
+import { Send, Bot, User, Settings, Copy, RefreshCw, Plus, MessageSquare } from 'lucide-react'
 
 interface Message {
   role: 'user' | 'assistant'

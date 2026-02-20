@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Plus, Bot, MessageSquare, Edit, Trash2, MoreVertical } from 'lucide-react'
+import { Plus, Bot, MessageSquare, Edit, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface Agent {
@@ -28,7 +28,6 @@ export default function AgentsPage() {
   const [agents, setAgents] = useState<Agent[]>([])
   const [loading, setLoading] = useState(true)
   const [agentLimit, setAgentLimit] = useState(1)
-  const [currentUser, setCurrentUser] = useState<{ email?: string } | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,8 +37,6 @@ export default function AgentsPage() {
         router.push('/auth/login')
         return
       }
-
-      setCurrentUser(user)
 
       const { data: soloUser } = await supabase
         .from('solo_users')
@@ -79,23 +76,6 @@ export default function AgentsPage() {
 
     setAgents(agents.filter(a => a.id !== agentId))
     toast.success('Agent 已删除')
-  }
-
-  const handleToggleAgent = async (agentId: string, currentStatus: boolean) => {
-    const { error } = await supabase
-      .from('user_agents')
-      .update({ is_active: !currentStatus })
-      .eq('id', agentId)
-
-    if (error) {
-      toast.error('更新失败')
-      return
-    }
-
-    setAgents(agents.map(a => 
-      a.id === agentId ? { ...a, is_active: !currentStatus } : a
-    ))
-    toast.success(!currentStatus ? 'Agent 已启用' : 'Agent 已禁用')
   }
 
   if (loading) {
