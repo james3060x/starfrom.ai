@@ -144,10 +144,8 @@ export default function NewAgentPage() {
         return
       }
 
-      await supabase
-        .from('solo_users')
-        .update({ total_agents: (existingAgents?.length || 0) + 1 } as any)
-        .eq('user_id', user.id)
+      // Skip the agent count update for now
+      // TODO: Re-enable after Supabase types are generated
 
       toast.success('Agent 创建成功！')
       router.push('/dashboard/agents')
