@@ -48,6 +48,7 @@ export default function SignupPage() {
 
       if (data.user) {
         // Create free trial user record
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const { error: profileError } = await supabase
           .from('solo_users')
           .insert({
@@ -58,7 +59,7 @@ export default function SignupPage() {
             storage_limit_gb: 0.5,
             api_calls_limit: 1000,
             trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
-          })
+          } as any)
 
         if (profileError) {
           console.error('Profile creation error:', profileError)
