@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 
+interface Agent {
+  id: string
+  name: string
+  system_prompt: string
+  model: string
+  temperature: number
+  max_tokens: number
+}
+
 export async function POST(request: NextRequest) {
   try {
     const supabase = createClient()
@@ -15,11 +24,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: agent, error: agentError } = await supabase
       .from('user_agents')
       .select('*')
       .eq('id', agent_id)
-      .single()
+      .single() as unknown as any
 
     if (agentError || !agent) {
       return NextResponse.json(
@@ -28,12 +38,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: messages } = await supabase
       .from('chat_messages')
       .select('*')
       .eq('session_id', conversation_id)
       .order('created_at', { ascending: true })
-      .limit(10)
+      .limit(10) as unknown as any
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const conversationHistory = messages?.map((m: any) => ({
@@ -75,6 +86,7 @@ export async function POST(request: NextRequest) {
     const data = await openaiResponse.json()
     const assistantMessage = data.choices[0]?.message?.content || '抱歉，我暂时无法回答这个问题。'
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await supabase
       .from('user_agents')
       .update({
