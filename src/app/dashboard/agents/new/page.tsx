@@ -135,7 +135,7 @@ export default function NewAgentPage() {
           enable_web_search: formData.enableWebSearch,
           enable_function_calling: formData.enableFunctionCalling,
           is_active: true,
-        })
+        } as any)
         .select()
         .single()
 
@@ -146,7 +146,7 @@ export default function NewAgentPage() {
 
       await supabase
         .from('solo_users')
-        .update({ total_agents: (existingAgents?.length || 0) + 1 })
+        .update({ total_agents: (existingAgents?.length || 0) + 1 } as any)
         .eq('user_id', user.id)
 
       toast.success('Agent 创建成功！')
