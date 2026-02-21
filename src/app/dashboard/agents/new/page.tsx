@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useState } from 'react'
@@ -12,6 +13,10 @@ import { Slider } from '@/components/ui/slider'
 import { toast } from 'sonner'
 import { ArrowLeft, Sparkles } from 'lucide-react'
 import Link from 'next/link'
+
+interface User {
+  agent_limit: number
+}
 
 const MODEL_OPTIONS = [
   { value: 'gpt-4o-mini', label: 'GPT-4o Mini (推荐)', description: '性价比高，速度快' },
@@ -102,7 +107,7 @@ export default function NewAgentPage() {
         .from('solo_users')
         .select('agent_limit')
         .eq('user_id', user.id)
-        .single()
+        .single<User>()
 
       const { data: existingAgents } = await supabase
         .from('user_agents')
