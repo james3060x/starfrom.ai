@@ -1,15 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 
-interface Agent {
-  id: string
-  name: string
-  system_prompt: string
-  model: string
-  temperature: number
-  max_tokens: number
-}
-
 export async function POST(request: NextRequest) {
   try {
     const supabase = createClient()
@@ -25,11 +16,11 @@ export async function POST(request: NextRequest) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: agent, error: agentError } = await supabase
+    const { data: agent, error: agentError }: any = await supabase
       .from('user_agents')
       .select('*')
       .eq('id', agent_id)
-      .single() as unknown as any
+      .single()
 
     if (agentError || !agent) {
       return NextResponse.json(
@@ -39,12 +30,12 @@ export async function POST(request: NextRequest) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: messages } = await supabase
+    const { data: messages }: any = await supabase
       .from('chat_messages')
       .select('*')
       .eq('session_id', conversation_id)
       .order('created_at', { ascending: true })
-      .limit(10) as unknown as any
+      .limit(10)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const conversationHistory = messages?.map((m: any) => ({
@@ -87,12 +78,12 @@ export async function POST(request: NextRequest) {
     const assistantMessage = data.choices[0]?.message?.content || '抱歉，我暂时无法回答这个问题。'
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await supabase
+    await (supabase
       .from('user_agents')
       .update({
         total_messages: (agent.total_messages || 0) + 1,
         last_used_at: new Date().toISOString()
-      })
+      }) as any)
       .eq('id', agent_id)
 
     return NextResponse.json({
