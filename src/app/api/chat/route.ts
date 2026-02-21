@@ -80,6 +80,7 @@ export async function POST(request: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await (supabase
       .from('user_agents')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .update({
         total_messages: (agent.total_messages || 0) + 1,
         last_used_at: new Date().toISOString()
