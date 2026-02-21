@@ -77,16 +77,6 @@ export async function POST(request: NextRequest) {
     const data = await openaiResponse.json()
     const assistantMessage = data.choices[0]?.message?.content || '抱歉，我暂时无法回答这个问题。'
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase
-      .from('user_agents')
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .update({
-        total_messages: (agent.total_messages || 0) + 1,
-        last_used_at: new Date().toISOString()
-      }) as any)
-      .eq('id', agent_id)
-
     return NextResponse.json({
       response: assistantMessage
     })
