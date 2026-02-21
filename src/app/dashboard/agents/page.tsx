@@ -22,6 +22,10 @@ interface Agent {
   created_at: string
 }
 
+interface SoloUser {
+  agent_limit: number
+}
+
 export default function AgentsPage() {
   const router = useRouter()
   const supabase = createClient()
@@ -42,7 +46,7 @@ export default function AgentsPage() {
         .from('solo_users')
         .select('agent_limit')
         .eq('user_id', user.id)
-        .single()
+        .single<SoloUser>()
 
       setAgentLimit(soloUser?.agent_limit || 1)
 
