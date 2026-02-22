@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useState, useRef } from 'react'
@@ -107,7 +108,7 @@ export function FileUploader({ knowledgeBaseId, onUploadComplete }: FileUploader
           file_size_bytes: fileData.size,
           storage_path: uploadData.path,
           processing_status: 'pending',
-        })
+        } as any)
 
       if (dbError) throw dbError
 
@@ -115,20 +116,21 @@ export function FileUploader({ knowledgeBaseId, onUploadComplete }: FileUploader
         f.id === fileData.id ? { ...f, status: 'success', progress: 100 } : f
       ))
 
-      const { data: kb } = await supabase
+      const { data: kb }: any = await supabase
         .from('knowledge_bases')
         .select('total_files, total_size_bytes')
         .eq('id', knowledgeBaseId)
         .single()
 
       if (kb) {
-        await supabase
+        await (supabase
           .from('knowledge_bases')
+          // @ts-expect-error - Supabase types not generated
           .update({
             total_files: (kb.total_files || 0) + 1,
             total_size_bytes: (kb.total_size_bytes || 0) + fileData.size,
           })
-          .eq('id', knowledgeBaseId)
+          .eq('id', knowledgeBaseId)) as any
       }
 
       onUploadComplete?.()

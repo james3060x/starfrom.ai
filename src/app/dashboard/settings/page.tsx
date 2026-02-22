@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -18,6 +19,7 @@ interface ApiKey {
 }
 
 interface UserData {
+  id?: string
   email?: string
 }
 
@@ -77,7 +79,7 @@ export default function SettingsPage() {
     const prefix = key.substring(0, 12)
     const keyHash = await hashKey(key)
 
-    const { data, error } = await supabase
+    const { data, error }: any = await supabase
       .from('api_keys')
       .insert({
         user_id: user.id,
@@ -86,7 +88,7 @@ export default function SettingsPage() {
         prefix: prefix,
         scopes: ['read', 'write'],
         is_active: true,
-      })
+      } as any)
       .select()
       .single()
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -41,13 +42,13 @@ export default function DashboardPage() {
       
       if (!user) return
 
-      const { data: soloUser } = await supabase
+      const { data: soloUser }: any = await supabase
         .from('solo_users')
         .select('*')
         .eq('user_id', user.id)
         .single()
 
-      const { data: agents } = await supabase
+      const { data: agents }: any = await supabase
         .from('user_agents')
         .select('*')
         .eq('user_id', user.id)
@@ -68,7 +69,7 @@ export default function DashboardPage() {
         storageLimit: soloUser?.storage_limit_gb || 0.5
       })
 
-      setRecentAgents(agents?.map(a => ({
+      setRecentAgents(agents?.map((a: any) => ({
         id: a.id,
         name: a.name,
         icon: a.icon || '🤖',
