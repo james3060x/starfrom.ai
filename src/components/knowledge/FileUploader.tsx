@@ -125,7 +125,6 @@ export function FileUploader({ knowledgeBaseId, onUploadComplete }: FileUploader
       if (kb) {
         await (supabase
           .from('knowledge_bases')
-          // @ts-expect-error - Supabase types not generated
           .update({
             total_files: (kb.total_files || 0) + 1,
             total_size_bytes: (kb.total_size_bytes || 0) + fileData.size,
