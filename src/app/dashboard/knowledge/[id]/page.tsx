@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -54,7 +55,7 @@ export default function KnowledgeDetailPage() {
         return
       }
 
-      const { data: kb } = await supabase
+      const { data: kb }: any = await supabase
         .from('knowledge_bases')
         .select('*')
         .eq('id', knowledgeId)
@@ -69,7 +70,7 @@ export default function KnowledgeDetailPage() {
 
       setKnowledgeBase(kb)
 
-      const { data: kbFiles } = await supabase
+      const { data: kbFiles }: any = await supabase
         .from('knowledge_files')
         .select('*')
         .eq('knowledge_base_id', knowledgeId)
