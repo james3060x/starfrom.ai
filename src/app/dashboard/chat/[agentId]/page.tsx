@@ -88,7 +88,7 @@ export default function ChatPage() {
   }, [agentId, router, supabase])
 
   const loadMessages = async (conversationId: string) => {
-    const { data } = await supabase
+    const { data }: any = await supabase
       .from('chat_messages')
       .select('*')
       .eq('session_id', conversationId)
