@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -50,7 +51,7 @@ export default function AgentsPage() {
 
       setAgentLimit(soloUser?.agent_limit || 1)
 
-      const { data: agentsData } = await supabase
+      const { data: agentsData }: any = await supabase
         .from('user_agents')
         .select('*')
         .eq('user_id', user.id)
