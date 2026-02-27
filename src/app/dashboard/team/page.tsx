@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -38,7 +39,7 @@ export default function TeamPage() {
         return
       }
 
-      const { data: soloUser } = await supabase
+      const { data: soloUser }: any = await supabase
         .from('solo_users')
         .select('*')
         .eq('user_id', user.id)
@@ -48,7 +49,7 @@ export default function TeamPage() {
         setCurrentUserRole('owner')
       }
 
-      const { data: teamMembers } = await supabase
+      const { data: teamMembers }: any = await supabase
         .from('workspace_members')
         .select('*')
         .eq('user_id', user.id)
