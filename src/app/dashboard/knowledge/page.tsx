@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -33,7 +34,7 @@ export default function KnowledgePage() {
         return
       }
 
-      const { data } = await supabase
+      const { data }: any = await supabase
         .from('knowledge_bases')
         .select('*')
         .eq('user_id', user.id)
