@@ -220,7 +220,7 @@ export default function SettingsPage() {
                 <div key={key.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
                   <div>
                     <p className="text-white font-medium">{key.name}</p>
-                    <p className="text-sm text-slate-400">{key.prefix}... </p>
+                    <p className="text-sm text-slate-400">{key.key_prefix}... </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className={`w-2 h-2 rounded-full ${key.is_active ? 'bg-green-400' : 'bg-slate-500'}`} />
