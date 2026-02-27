@@ -12,10 +12,10 @@ import { User, CreditCard, Key, Shield, Plus, Trash2, ExternalLink } from 'lucid
 interface ApiKey {
   id: string
   name: string
-  prefix: string
-  is_active: boolean
+  key_prefix: string
+  is_active: boolean | null
   last_used_at: string | null
-  created_at: string
+  created_at: string | null
 }
 
 interface UserData {
@@ -56,7 +56,7 @@ export default function SettingsPage() {
 
       setUserPlan(plan)
 
-      const { data: keys } = await supabase
+      const { data: keys }: any = await supabase
         .from('api_keys')
         .select('*')
         .eq('user_id', user.id)
